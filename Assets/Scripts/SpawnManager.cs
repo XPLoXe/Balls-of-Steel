@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpawnManager : MonoBehaviour
+{
+    private float spawnRange = 9.0f;
+    public int waveCount = 0;
+    private AudioSource managerAudioSource;
+    public AudioClip waveClip;
+    public PlayerController playerControllerScript;
+
+    //enemy\\
+    public GameObject enemyPrefab;
+    public float enemyStartDelay = 1.0f;
+    public float enemySpawnInterval = 3.0f;
+    public int enemyCount;
+
+    //powerup\\
+    public GameObject powerupPrefab;
+    public float powerupStartDelay = 5.0f;
+    public float powerupSpawnInterval = 20.0f;
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+        managerAudioSource = GetComponent<AudioSource>();
+        //InvokeRepeating("SpawnEnemy", enemyStartDelay, enemySpawnInterval);
+        InvokeRepeating("SpawnPowerUp", powerupStartDelay, powerupSpawnInterval);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        enemyCount = FindObjectsOfType<Enemy>().Length;
+
+        if (enemyCount == 0 && playerControllerScript.gameOver == false)
+        {
+            managerAudioSource.PlayOneShot(waveClip);
+            waveCount++;
+            spawnEnemyWave(waveCount * 2);
+            SpawnPowerUp();
+        }
+    }
+
+    private Vector3 GenerateSpawnPosition()
+    {
+        float spawnPosz = Random.Range(-spawnRange, spawnRange);
+        float spawnPosx = Random.Range(-spawnRange, spawnRange);
+        Vector3 randomPos = new Vector3(spawnPosx, 0, spawnPosz);
+        return randomPos;
+    }
+
+    void spawnEnemyWave(int enemiesToSpawn)
+    {
+        for(int i = 0; i < enemiesToSpawn; i++)
+        {
+            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+        }
+    }
+
+    private void SpawnEnemy()
+    {
+        Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+    }
+
+    private void SpawnPowerUp()
+    {
+        if (playerControllerScript.gameOver == false)
+        {
+            Instantiate(powerupPrefab, GenerateSpawnPosition() + new Vector3(0, 1, 0), powerupPrefab.transform.rotation);
+        }
+        
+    }
+}
