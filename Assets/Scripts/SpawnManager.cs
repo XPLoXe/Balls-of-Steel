@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     private float spawnRange = 9.0f;
-    public int waveCount = 0;
+    public static int waveCount = 0;
     private AudioSource managerAudioSource;
     public AudioClip waveClip;
     public PlayerController playerControllerScript;
