@@ -1473,6 +1473,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ocean
       objectReference: {fileID: 0}
+    - target: {fileID: 9085641581934473694, guid: 7dd104c445f802d4fa80f583d7de8c37, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085641581934473695, guid: 7dd104c445f802d4fa80f583d7de8c37, type: 3}
+      propertyPath: waveHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085641581934473695, guid: 7dd104c445f802d4fa80f583d7de8c37, type: 3}
+      propertyPath: waveLength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9085641581934473695, guid: 7dd104c445f802d4fa80f583d7de8c37, type: 3}
+      propertyPath: waveFrequency
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dd104c445f802d4fa80f583d7de8c37, type: 3}
 --- !u!1 &1281820563
