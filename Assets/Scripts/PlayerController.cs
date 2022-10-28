@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     {
         float forwardInput = Input.GetAxis("Vertical"); //for up and down
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
+        float rightInput = Input.GetAxis("Horizontal");
+        playerRb.AddForce(focalPoint.transform.right * rightInput * speed);
 
         //powerUp RING\\
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
