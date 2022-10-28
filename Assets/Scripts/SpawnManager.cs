@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
     private float spawnRange = 9.0f;
-    public int waveCount = 0;
+    public static int waveCount = 0;
     private AudioSource managerAudioSource;
     public AudioClip waveClip;
     public PlayerController playerControllerScript;
@@ -20,7 +21,10 @@ public class SpawnManager : MonoBehaviour
     public GameObject powerupPrefab;
     public float powerupStartDelay = 5.0f;
     public float powerupSpawnInterval = 20.0f;
-    
+
+    //UI
+    public TextMeshProUGUI waveText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +42,11 @@ public class SpawnManager : MonoBehaviour
         if (enemyCount == 0 && playerControllerScript.gameOver == false)
         {
             managerAudioSource.PlayOneShot(waveClip);
+            
             waveCount++;
+            MainManager.Instance.wave = waveCount;
+            Debug.Log(MainManager.Instance.wave);
+            UpdateWaveCount(waveCount);
             spawnEnemyWave(waveCount * 2);
             SpawnPowerUp();
         }
@@ -72,5 +80,10 @@ public class SpawnManager : MonoBehaviour
             Instantiate(powerupPrefab, GenerateSpawnPosition() + new Vector3(0, 1, 0), powerupPrefab.transform.rotation);
         }
         
+    }
+
+    public void UpdateWaveCount(int wave)
+    {
+        waveText.text = "Wave: " + wave.ToString();
     }
 }

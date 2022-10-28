@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,8 +14,11 @@ public class PlayerController : MonoBehaviour
     public AudioClip enemyHitAudio;
     private float lowerBound = 15.0f;
     public bool gameOver = false;
-    public GameObject restartGameButton;
+    
 
+    //UI
+    public GameObject restartGameButton;
+    public TextMeshProUGUI highScore;
 
     // powerUp \\
     public bool hasPowerUp = false;
@@ -26,6 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         restartGameButton.SetActive(false);
+        highScore.gameObject.SetActive(false);
         playerRb = GetComponent<Rigidbody>();
         playerAudioSource = GetComponent<AudioSource>();
         focalPoint = GameObject.Find("Focal Point");
@@ -43,7 +48,14 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < -lowerBound)
         {
+            if (SpawnManager.waveCount > MainManager.Instance.LoadWave())
+            {
+                MainManager.Instance.SaveWave(SpawnManager.waveCount);
+            }
+           
             restartGameButton.SetActive(true);
+            highScore.text = "High Score: " + MainManager.Instance.LoadWave();
+            highScore.gameObject.SetActive(true);
             gameOver = true;
         }
     }

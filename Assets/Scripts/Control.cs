@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Control : MonoBehaviour
 {
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,9 @@ public class Control : MonoBehaviour
 
     public void ResetTheGame()
     {
+        SpawnManager.waveCount = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    
 }
