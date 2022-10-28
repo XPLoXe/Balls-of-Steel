@@ -28,10 +28,12 @@ public class MenuUI : MonoBehaviour
     public void StarNewEasy()
     {
         Enemy.difficulty = 1;
+        StartNew();
     }
 
     public void StartNewHard()
     {
         Enemy.difficulty = 2;
+        StartNew();
     }
 }
