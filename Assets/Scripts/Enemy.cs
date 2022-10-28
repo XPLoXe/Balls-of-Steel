@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     private float waterBounds = 7.0f;
     private AudioSource enemyAudioSource;
     public AudioClip enemyFallClip;
+
+    public static int difficulty;
+
     
     // Start is called before the first frame update
     void Start()
@@ -23,10 +26,18 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
-        //Enemy following the player
-        enemyRb.AddForce(lookDirection * speed);
+        if (difficulty == 1)
+        {
+            EasyMovement();
+        }
+
+        if (difficulty == 2)
+        {
+            HardMovement();
+        }
+        
     }
+
 
     void Update()
     {
@@ -40,5 +51,19 @@ public class Enemy : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    private void HardMovement()
+    {
+        Vector3 lookDirection = (player.transform.position - transform.position);
+        //Enemy following the player
+        enemyRb.AddForce(lookDirection * speed);
+    }
+
+    private void EasyMovement()
+    {
+        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        //Enemy following the player
+        enemyRb.AddForce(lookDirection * speed);
     }
 }
