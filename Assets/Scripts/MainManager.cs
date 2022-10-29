@@ -14,6 +14,7 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        totalGems = LoadGems();
         if (Instance != null)
         {
             Destroy(gameObject);

@@ -875,6 +875,7 @@ MonoBehaviour:
   gameOver: 0
   restartGameButton: {fileID: 2048910844}
   highScore: {fileID: 1565969219}
+  gemCount: {fileID: 626397467}
   hasPowerUp: 0
   powerupStrength: 10
   powerupRotationSpeed: 35
@@ -1355,10 +1356,10 @@ RectTransform:
   m_Father: {fileID: 1859761064}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -321.66333, y: -139.97874}
-  m_SizeDelta: {x: 156.6678, y: 46.3147}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 78.334, y: 23.157}
+  m_SizeDelta: {x: 156.6678, y: 46.314697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1035751486
 MonoBehaviour:

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     //UI
     public GameObject restartGameButton;
     public TextMeshProUGUI highScore;
+    public TextMeshProUGUI gemCount;
 
     // powerUp \\
     public bool hasPowerUp = false;
@@ -39,6 +40,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //UI\\
+        gemCount.text = MainManager.Instance.getTotalGems().ToString();
+
         float forwardInput = Input.GetAxis("Vertical"); //for up and down
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         float rightInput = Input.GetAxis("Horizontal");

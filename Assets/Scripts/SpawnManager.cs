@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
 
     //UI
     public TextMeshProUGUI waveText;
-
+    
     // Start is called before the first frame update
     void Start()
     {
