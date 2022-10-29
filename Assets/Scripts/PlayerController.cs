@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PowerUp"))
+        if (other.CompareTag("PowerUp") && !hasPowerUp)
         {
             hasPowerUp = true;
             playerAudioSource.PlayOneShot(powerupAudio, 2.0f);
