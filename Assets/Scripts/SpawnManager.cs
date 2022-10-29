@@ -36,6 +36,7 @@ public class SpawnManager : MonoBehaviour
         managerAudioSource = GetComponent<AudioSource>();
         //InvokeRepeating("SpawnEnemy", enemyStartDelay, enemySpawnInterval);
         InvokeRepeating("SpawnPowerUp", powerupStartDelay, powerupSpawnInterval);
+        InvokeRepeating("SpawnGem", powerupStartDelay, powerupSpawnInterval);
     }
 
     // Update is called once per frame
@@ -96,6 +97,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
+    //GEM\\
     private void SpawnGem()
     {
         if (playerControllerScript.gameOver == false)
