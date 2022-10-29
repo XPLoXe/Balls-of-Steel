@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Ground
   - Gem
+  - Wall
   layers:
   - Default
   - TransparentFX
