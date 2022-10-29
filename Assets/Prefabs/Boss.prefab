@@ -102,5 +102,5 @@ MonoBehaviour:
   speed: 3
   wallForceMuliplier: 5
   enemyFallClip: {fileID: 0}
-  enemyHitClip: {fileID: 0}
+  enemyHitClip: {fileID: 8300000, guid: 4d0bf64083cc13441bb8953c4bddf04e, type: 3}
   isGrounded: 1
