@@ -96,5 +96,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  wallForceMuliplier: 5
   enemyFallClip: {fileID: 0}
   isGrounded: 1

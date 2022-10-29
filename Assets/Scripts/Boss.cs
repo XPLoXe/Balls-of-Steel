@@ -12,7 +12,7 @@ public class Boss : Enemy
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         setSpeed();
-        setWallForceMultiplier(50f);
+        setWallForceMultiplier(1.5f);
     }
 
     public override void setSpeed()

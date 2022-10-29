@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -97,20 +98,25 @@ public class Enemy : MonoBehaviour
 
     private void EasyMovement()
     {
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         //Enemy following the player
-        enemyRb.AddForce(lookDirection * speed);
+        enemyRb.AddForce(LookDirection() * speed);
     }
 
-    private void AvoidEdgeImpulse(Vector3 direction)
+    protected void AvoidEdgeImpulse(Vector3 direction)
     {
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        
         //Enemy following the player
         //enemyRb.AddForce(lookDirection * speed, ForceMode.Impulse);
         enemyRb.AddForce(direction * wallForceMuliplier, ForceMode.Impulse);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    protected Vector3 LookDirection()
+    {
+        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        return lookDirection;
+    }
+
+    protected void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -118,7 +124,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    protected void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -126,14 +132,28 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //protected virtual void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Wall"))
-    //    {
-    //        AvoidEdgeImpulse(other.transform.up);
-    //    }
-        
-    //}
+    protected void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player")){
+            Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromEnemy = (collision.gameObject.transform.position - transform.position);
+            playerRB.AddExplosionForce(30f, awayFromEnemy, 5f, 10f);
+            enemyRb.AddExplosionForce(30f, -LookDirection(), 5f, 10f);
+            
+        }
+
+
+
+    }
+
+    protected virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            AvoidEdgeImpulse(other.transform.up);
+        }
+
+    }
 
     protected virtual void OnTriggerStay(Collider other)
     {

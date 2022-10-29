@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip enemyHitAudio;
     private float lowerBound = 15.0f;
     public bool gameOver = false;
+    private bool isGrounded = true;
     
 
     //UI
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     // powerUp \\
     public bool hasPowerUp = false;
-    public float powerupStrength = 10.0f;
+    public float powerupStrength = 15.0f;
     public float powerupRotationSpeed = 30.0f;
     public GameObject powerupIndicator;
 
@@ -43,6 +44,10 @@ public class PlayerController : MonoBehaviour
         //UI\\
         gemCount.text = MainManager.Instance.getTotalGems().ToString();
 
+        if (!isGrounded)
+        {
+            speed /= 2;
+        }
         float forwardInput = Input.GetAxis("Vertical"); //for up and down
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         float rightInput = Input.GetAxis("Horizontal");
@@ -104,6 +109,27 @@ public class PlayerController : MonoBehaviour
             enemyRigidBody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
 
             Debug.Log("Collided with: " + collision.gameObject.name + " With Power Up set to " + hasPowerUp);
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
         }
     }
 }
