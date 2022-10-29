@@ -21,12 +21,12 @@ public class ExitButton : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-        EditorApplication.ExitPlaymode();
+        //EditorApplication.ExitPlaymode();
     }
 
     public void BackToMenu()
     {
         SpawnManager.waveCount = 0;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
