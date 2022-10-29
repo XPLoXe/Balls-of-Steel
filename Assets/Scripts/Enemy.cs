@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     
     protected AudioSource enemyAudioSource;
     public AudioClip enemyFallClip;
+    public AudioClip enemyHit;
     [SerializeField] private bool isGrounded = true; 
 
     public static int difficulty;
@@ -97,6 +98,11 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            enemyAudioSource.PlayOneShot(enemyHit);
+        }
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
