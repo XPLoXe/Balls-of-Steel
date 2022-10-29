@@ -23,12 +23,9 @@ public class SpawnManager : MonoBehaviour
     public float powerupStartDelay = 5.0f;
     public float powerupSpawnInterval = 20.0f;
 
-    //gem\\
-    public GameObject gemPrefab;
-
     //UI
     public TextMeshProUGUI waveText;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +33,6 @@ public class SpawnManager : MonoBehaviour
         managerAudioSource = GetComponent<AudioSource>();
         //InvokeRepeating("SpawnEnemy", enemyStartDelay, enemySpawnInterval);
         InvokeRepeating("SpawnPowerUp", powerupStartDelay, powerupSpawnInterval);
-        InvokeRepeating("SpawnGem", powerupStartDelay, powerupSpawnInterval);
     }
 
     // Update is called once per frame
@@ -69,23 +65,18 @@ public class SpawnManager : MonoBehaviour
     {
         for(int i = 0; i < enemiesToSpawn; i++)
         {
-            SpawnEnemy();
+            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
 
         if (waveCount%4 == 0)
         {
-            SpawnBoss();
+            Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
         }
     }
 
     private void SpawnEnemy()
     {
         Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
-    }
-
-    private void SpawnBoss()
-    {
-        Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
     }
 
     private void SpawnPowerUp()
@@ -95,15 +86,6 @@ public class SpawnManager : MonoBehaviour
             Instantiate(powerupPrefab, GenerateSpawnPosition() + new Vector3(0, 1, 0), powerupPrefab.transform.rotation);
         }
         
-    }
-
-    //GEM\\
-    private void SpawnGem()
-    {
-        if (playerControllerScript.gameOver == false)
-        {
-            Instantiate(gemPrefab, GenerateSpawnPosition() + new Vector3(0, 0.05f, 0), gemPrefab.transform.rotation);
-        }
     }
 
     public void UpdateWaveCount(int wave)

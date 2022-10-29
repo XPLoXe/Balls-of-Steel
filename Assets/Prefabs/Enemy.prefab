@@ -129,9 +129,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  wallForceMuliplier: 0.2
   enemyFallClip: {fileID: 8300000, guid: 36c64efbed8499346a9bbe5a62a0b9b8, type: 3}
+<<<<<<< Updated upstream
+=======
+  enemyHit: {fileID: 8300000, guid: 25e26b0c7db80dc43958a5152dc97fa3, type: 3}
   isGrounded: 1
+>>>>>>> Stashed changes
 --- !u!82 &995639470055438227
 AudioSource:
   m_ObjectHideFlags: 0
