@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     private float lowerBound = 15.0f;
     public bool gameOver = false;
     private bool isGrounded = true;
+
+    [SerializeField]private float normalHit = 3.0f;
     
 
     //UI
@@ -44,10 +46,10 @@ public class PlayerController : MonoBehaviour
         //UI\\
         gemCount.text = MainManager.Instance.getTotalGems().ToString();
 
-        if (!isGrounded)
-        {
-            speed /= 2;
-        }
+        //if (!isGrounded)
+        //{
+        //    speed /= 2;
+        //}
         float forwardInput = Input.GetAxis("Vertical"); //for up and down
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         float rightInput = Input.GetAxis("Horizontal");
@@ -101,15 +103,34 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerUp)
+        Rigidbody enemyRigidBody = collision.gameObject.GetComponent<Rigidbody>();
+        Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+
+        if (isEnemy(collision.gameObject) && hasPowerUp)
         {
             playerAudioSource.PlayOneShot(enemyHitAudio);
-            Rigidbody enemyRigidBody = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
-            enemyRigidBody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+            
+            
+
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                enemyRigidBody.AddForce(awayFromPlayer * powerupStrength * 3, ForceMode.Impulse);
+            }
+            else
+            {
+                enemyRigidBody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+            }
+
+            
 
             Debug.Log("Collided with: " + collision.gameObject.name + " With Power Up set to " + hasPowerUp);
+        } 
+        else if (isEnemy(collision.gameObject) && !hasPowerUp)
+        {
+            enemyRigidBody.AddForce(awayFromPlayer * normalHit, ForceMode.Impulse);
         }
+
+
 
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -131,5 +152,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    private bool isEnemy(GameObject collision)
+    {
+        return (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"));
     }
 }

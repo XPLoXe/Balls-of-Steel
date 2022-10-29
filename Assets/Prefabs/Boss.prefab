@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5083850059381911364, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 5083850059381911368, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -98,4 +102,5 @@ MonoBehaviour:
   speed: 3
   wallForceMuliplier: 5
   enemyFallClip: {fileID: 0}
+  enemyHitClip: {fileID: 0}
   isGrounded: 1

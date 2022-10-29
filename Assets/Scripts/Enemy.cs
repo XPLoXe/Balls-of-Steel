@@ -143,8 +143,9 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.CompareTag("Player")){
             Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromEnemy = (collision.gameObject.transform.position - transform.position);
-            playerRB.AddExplosionForce(30f, awayFromEnemy, 5f, 10f);
-            enemyRb.AddExplosionForce(30f, -LookDirection(), 5f, 10f);
+            playerRB.AddForce(awayFromEnemy * 2f, ForceMode.Impulse);
+            //playerRB.AddExplosionForce(30f, awayFromEnemy, 5f, 10f);
+            //enemyRb.AddExplosionForce(30f, -LookDirection(), 5f, 10f);
             
         }
 
