@@ -7,7 +7,6 @@ TagManager:
   - PowerUp
   - Enemy
   - Ground
-  - Gem
   layers:
   - Default
   - TransparentFX

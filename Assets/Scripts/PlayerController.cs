@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     //UI
     public GameObject restartGameButton;
     public TextMeshProUGUI highScore;
-    public TextMeshProUGUI gemCount;
 
     // powerUp \\
     public bool hasPowerUp = false;
@@ -40,9 +39,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UI\\
-        gemCount.text = MainManager.Instance.getTotalGems().ToString();
-
         float forwardInput = Input.GetAxis("Vertical"); //for up and down
         playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
         float rightInput = Input.GetAxis("Horizontal");
@@ -52,16 +48,13 @@ public class PlayerController : MonoBehaviour
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
         powerupIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
 
-        //GAME OVER\\
         if (transform.position.y < -lowerBound)
         {
             if (SpawnManager.waveCount > MainManager.Instance.LoadWave())
             {
                 MainManager.Instance.SaveWave(SpawnManager.waveCount);
             }
-
-            MainManager.Instance.SaveGems();
-
+           
             restartGameButton.SetActive(true);
             highScore.text = "High Score: " + MainManager.Instance.LoadWave();
             highScore.gameObject.SetActive(true);
@@ -71,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PowerUp") && !hasPowerUp)
+        if (other.CompareTag("PowerUp"))
         {
             hasPowerUp = true;
             playerAudioSource.PlayOneShot(powerupAudio, 2.0f);
@@ -79,17 +72,11 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
         }
-
-        if (other.CompareTag("Gem"))
-        {
-            MainManager.Instance.setTotalGems(1);
-            Destroy(other.gameObject);
-        }
     }
 
     IEnumerator PowerupCountdownRoutine()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5);
         powerupIndicator.SetActive(false);
         hasPowerUp = false;
     }
