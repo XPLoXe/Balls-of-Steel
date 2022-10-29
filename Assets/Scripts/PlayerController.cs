@@ -48,13 +48,16 @@ public class PlayerController : MonoBehaviour
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
         powerupIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
 
+        //GAME OVER\\
         if (transform.position.y < -lowerBound)
         {
             if (SpawnManager.waveCount > MainManager.Instance.LoadWave())
             {
                 MainManager.Instance.SaveWave(SpawnManager.waveCount);
             }
-           
+
+            MainManager.Instance.SaveGems();
+
             restartGameButton.SetActive(true);
             highScore.text = "High Score: " + MainManager.Instance.LoadWave();
             highScore.gameObject.SetActive(true);

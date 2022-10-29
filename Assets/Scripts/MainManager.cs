@@ -56,9 +56,9 @@ public class MainManager : MonoBehaviour
         }
     }
 
-    public void SaveGems(int gemsToSave)
+    public void SaveGems()
     {
-        GemData data = new GemData(gemsToSave);
+        GemData data = new GemData(totalGems);
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/gems.json", json);
     }
