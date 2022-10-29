@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  wallForceMuliplier: 0.2
+  wallForceMuliplier: 0.25
   enemyFallClip: {fileID: 8300000, guid: 36c64efbed8499346a9bbe5a62a0b9b8, type: 3}
   enemyHitClip: {fileID: 8300000, guid: 4d0bf64083cc13441bb8953c4bddf04e, type: 3}
   isGrounded: 1
