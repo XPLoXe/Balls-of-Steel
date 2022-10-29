@@ -72,6 +72,12 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
         }
+
+        if (other.CompareTag("Gem"))
+        {
+            MainManager.Instance.setTotalGems(1);
+            Destroy(other.gameObject);
+        }
     }
 
     IEnumerator PowerupCountdownRoutine()
