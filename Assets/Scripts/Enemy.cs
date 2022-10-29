@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] protected float speed = 3.0f;
+    [SerializeField] protected float wallForceMuliplier = 5.0f;
     protected GameObject player;
     protected Rigidbody enemyRb;
     
@@ -33,6 +35,11 @@ public class Enemy : MonoBehaviour
         {
             speed = 2.5f;
         }
+    }
+
+    public virtual void setWallForceMultiplier(float multiplier)
+    {
+        wallForceMuliplier = multiplier;
     }
 
     // Update is called once per frame
@@ -95,6 +102,14 @@ public class Enemy : MonoBehaviour
         enemyRb.AddForce(lookDirection * speed);
     }
 
+    private void AvoidEdgeImpulse(Vector3 direction)
+    {
+        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        //Enemy following the player
+        //enemyRb.AddForce(lookDirection * speed, ForceMode.Impulse);
+        enemyRb.AddForce(direction * wallForceMuliplier, ForceMode.Impulse);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -108,6 +123,23 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+        }
+    }
+
+    //protected virtual void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Wall"))
+    //    {
+    //        AvoidEdgeImpulse(other.transform.up);
+    //    }
+        
+    //}
+
+    protected virtual void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            AvoidEdgeImpulse(other.transform.up);
         }
     }
 

@@ -12,6 +12,7 @@ public class Boss : Enemy
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         setSpeed();
+        setWallForceMultiplier(50f);
     }
 
     public override void setSpeed()
@@ -26,6 +27,8 @@ public class Boss : Enemy
             speed = 30.0f;
         }
     }
+
+    
 
     // Update is called once per frame
     void Update()
