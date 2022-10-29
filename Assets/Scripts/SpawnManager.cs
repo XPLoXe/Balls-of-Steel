@@ -13,6 +13,7 @@ public class SpawnManager : MonoBehaviour
 
     //enemy\\
     public GameObject enemyPrefab;
+    public GameObject bossPrefab;
     public float enemyStartDelay = 1.0f;
     public float enemySpawnInterval = 3.0f;
     public int enemyCount;
@@ -60,11 +61,16 @@ public class SpawnManager : MonoBehaviour
         return randomPos;
     }
 
-    void spawnEnemyWave(int enemiesToSpawn)
+    private void spawnEnemyWave(int enemiesToSpawn)
     {
         for(int i = 0; i < enemiesToSpawn; i++)
         {
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+        }
+
+        if (waveCount%4 == 0)
+        {
+            Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
         }
     }
 
