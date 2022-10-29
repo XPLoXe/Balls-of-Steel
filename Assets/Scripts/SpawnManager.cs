@@ -23,6 +23,9 @@ public class SpawnManager : MonoBehaviour
     public float powerupStartDelay = 5.0f;
     public float powerupSpawnInterval = 20.0f;
 
+    //gem\\
+    public GameObject gemPrefab;
+
     //UI
     public TextMeshProUGUI waveText;
 
@@ -86,6 +89,14 @@ public class SpawnManager : MonoBehaviour
             Instantiate(powerupPrefab, GenerateSpawnPosition() + new Vector3(0, 1, 0), powerupPrefab.transform.rotation);
         }
         
+    }
+
+    private void SpawnGem()
+    {
+        if (playerControllerScript.gameOver == false)
+        {
+            Instantiate(gemPrefab, GenerateSpawnPosition() + new Vector3(0, 0.05f, 0), gemPrefab.transform.rotation);
+        }
     }
 
     public void UpdateWaveCount(int wave)

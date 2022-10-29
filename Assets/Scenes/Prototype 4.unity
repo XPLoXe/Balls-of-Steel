@@ -1546,6 +1546,7 @@ MonoBehaviour:
   powerupPrefab: {fileID: 172682794149127642, guid: 91da44c835cf7ab42a341c4f52157d19, type: 3}
   powerupStartDelay: 5
   powerupSpawnInterval: 20
+  gemPrefab: {fileID: 212258784656232123, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
   waveText: {fileID: 2068150355}
 --- !u!82 &1281820566
 AudioSource:
@@ -2460,6 +2461,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068150353}
   m_CullTransparentMesh: 1
+--- !u!1001 &213398981064200096
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209068699925645653, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212258784656232123, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
+      propertyPath: m_Name
+      value: Gem
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f801f13b14b3938419ecd742bd71a563, type: 3}
 --- !u!1001 &7305732181041295649
 PrefabInstance:
   m_ObjectHideFlags: 0
