@@ -17,8 +17,25 @@ public class PowerUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if (gameObject.CompareTag("Gem"))
+        {
+            Destroy(gameObject, 5.0f);
+        }
+        else
+        {
+            Destroy(gameObject, 20.0f);
+        }
+
+
         //Store the starting position & rotation of the object
         posOffset = transform.position;
+    }
+
+    private void Awake()
+    {
+        
+        
     }
 
     // Update is called once per frame
@@ -32,4 +49,5 @@ public class PowerUp : MonoBehaviour
 
         transform.position = tempPos;
     }
+
 }
