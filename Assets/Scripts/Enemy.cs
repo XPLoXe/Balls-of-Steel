@@ -47,6 +47,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        EasyMovement();
         if (isGrounded == true)
         {
             if (difficulty == 1)
@@ -117,8 +119,10 @@ public class Enemy : MonoBehaviour
         return lookDirection;
     }
 
-    protected void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
+        
+
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
@@ -127,10 +131,18 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             enemyAudioSource.PlayOneShot(enemyHitClip);
+            //ExplosionPhysics(collision.gameObject);
+        }
+
+        if (this.gameObject.CompareTag("Bomber") && collision.gameObject.CompareTag("Player"))
+        {
+            Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
+            playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 10f, ForceMode.Impulse);
+            Destroy(this.gameObject);
         }
     }
 
-    protected void OnCollisionExit(Collision collision)
+    public virtual void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
@@ -138,7 +150,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void OnCollisionStay(Collision collision)
+    public virtual void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player")){
             Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
@@ -153,7 +165,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    protected virtual void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Wall"))
         {
@@ -170,4 +182,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void ExplosionPhysics(GameObject receiver)
+    {
+        Rigidbody playerRB = receiver.GetComponent<Rigidbody>();
+        //playerRB.AddExplosionForce(400f, AwayFromEnemy(receiver), 50.0f);
+        //playerRB.AddExplosionForce(400f, Vector3.up, 10.0f);
+    }
+
+    public Vector3 AwayFromEnemy(GameObject receiver)
+    {
+        return (receiver.transform.position - transform.position).normalized;
+    }
 }
