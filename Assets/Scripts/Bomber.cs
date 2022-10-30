@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Bomber : Enemy
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,4 @@ public class Bomber : Enemy
     {
         
     }
-
-
 }

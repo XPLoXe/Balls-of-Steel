@@ -123,10 +123,7 @@ public class Enemy : MonoBehaviour
     {
         
 
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        
 
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -140,6 +137,16 @@ public class Enemy : MonoBehaviour
             playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 10f, ForceMode.Impulse);
             Destroy(this.gameObject);
         }
+    }
+
+    public bool IsGrounded(GameObject ground)
+    {
+        if (ground.gameObject.CompareTag("Ground"))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public virtual void OnCollisionExit(Collision collision)
