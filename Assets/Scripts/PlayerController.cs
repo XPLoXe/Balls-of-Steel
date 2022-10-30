@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5.0f;
+    
     
     private Rigidbody playerRb;
     private GameObject focalPoint;
@@ -35,9 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         restartGameButton.SetActive(false);
         highScore.gameObject.SetActive(false);
-        playerRb = GetComponent<Rigidbody>();
+
         playerAudioSource = GetComponent<AudioSource>();
-        focalPoint = GameObject.Find("Focal Point");
     }
 
     // Update is called once per frame
@@ -50,10 +49,7 @@ public class PlayerController : MonoBehaviour
         //{
         //    speed /= 2;
         //}
-        float forwardInput = Input.GetAxis("Vertical"); //for up and down
-        playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
-        float rightInput = Input.GetAxis("Horizontal");
-        playerRb.AddForce(focalPoint.transform.right * rightInput * speed);
+        
 
         //powerUp RING\\
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
