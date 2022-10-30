@@ -339,6 +339,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5083850059381911364, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5083850059381911364, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
+      propertyPath: m_TagString
+      value: Bomber
+      objectReference: {fileID: 0}
     - target: {fileID: 5083850059381911368, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -361,7 +369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5083850059381911368, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.124
+      value: -0.057
       objectReference: {fileID: 0}
     - target: {fileID: 5083850059381911368, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -878,6 +886,7 @@ GameObject:
   - component: {fileID: 699041791}
   - component: {fileID: 699041796}
   - component: {fileID: 699041797}
+  - component: {fileID: 699041798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -986,12 +995,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699041790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c22bade4e141324188626c69f86e145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   powerupAudio: {fileID: 8300000, guid: 7efa95b53cf786d4a86e83511a46bdf6, type: 3}
   enemyHitAudio: {fileID: 8300000, guid: e09469da81679ac45b368828e20f89b5, type: 3}
   gameOver: 0
@@ -1099,6 +1107,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &699041798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699041790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabb571860f737743a09394956e6aa82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &751363735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,7 +2036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1281820564
 Transform:
   m_ObjectHideFlags: 0
@@ -2044,7 +2065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveClip: {fileID: 8300000, guid: b3af400039fbc874ab3c724b0915543b, type: 3}
-  playerControllerScript: {fileID: 0}
+  playerControllerScript: {fileID: 699041796}
   enemyPrefab: {fileID: 5083850059381911364, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
   bossPrefab: {fileID: 1081255809025588374, guid: bc1aaf1f6609bc64e85e676680b9a71d, type: 3}
   enemyStartDelay: 1
