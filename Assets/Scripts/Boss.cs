@@ -5,10 +5,15 @@ using UnityEngine;
 public class Boss : Enemy
 {
 
+    //AUDIO\\
+    private AudioSource bossAudioSource;
+    public AudioClip bossHitClip;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        enemyAudioSource = GetComponent<AudioSource>();
+        bossAudioSource = GetComponent<AudioSource>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         setSpeed();
@@ -33,7 +38,16 @@ public class Boss : Enemy
     // Update is called once per frame
     void Update()
     {
-        WaterBounds();
-        LowerBounds();
+       
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (IsPlayer(collision.gameObject))
+        {
+            bossAudioSource.PlayOneShot(bossHitClip);
+        }
+    }
+
+
 }

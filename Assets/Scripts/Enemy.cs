@@ -11,9 +11,9 @@ public class Enemy : MonoBehaviour
     protected GameObject player;
     protected Rigidbody enemyRb;
     
-    protected AudioSource enemyAudioSource;
+    private AudioSource enemyAudioSource;
     public AudioClip enemyFallClip;
-    public AudioClip enemyHitClip;
+    private AudioClip enemyHitClip;
     [SerializeField] private bool isGrounded = true; 
 
     public static int difficulty;
@@ -31,24 +31,16 @@ public class Enemy : MonoBehaviour
         setSpeed();
     }
 
-    public virtual void setSpeed()
-    {
-        if (difficulty == 2)
-        {
-            speed = 2.5f;
-        }
-    }
-
-    public virtual void setWallForceMultiplier(float multiplier)
-    {
-        wallForceMuliplier = multiplier;
-    }
+    
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        EasyMovement();
+        WaterBounds();
+        LowerBounds();
+
+        EasyMovement(); //only for testing. remove otherwise
         if (isGrounded == true)
         {
             if (difficulty == 1)
@@ -69,12 +61,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        WaterBounds();
-        LowerBounds();
+        
         
     }
 
-    protected void WaterBounds()
+    private void WaterBounds()
     {
         if (transform.position.y == -waterBounds)
         {
@@ -82,7 +73,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void LowerBounds()
+    private void LowerBounds()
     {
         if (transform.position.y < -lowerBounds)
         {
@@ -119,27 +110,14 @@ public class Enemy : MonoBehaviour
         return lookDirection;
     }
 
-    public virtual void OnCollisionEnter(Collision collision)
+   
+
+    protected bool IsPlayer(GameObject collision)
     {
-        
-
-        
-
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            enemyAudioSource.PlayOneShot(enemyHitClip);
-            //ExplosionPhysics(collision.gameObject);
-        }
-
-        if (this.gameObject.CompareTag("Bomber") && collision.gameObject.CompareTag("Player"))
-        {
-            Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
-            playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 10f, ForceMode.Impulse);
-            Destroy(this.gameObject);
-        }
+        return collision.gameObject.CompareTag("Player");
     }
 
-    public bool IsGrounded(GameObject ground)
+    protected bool IsGrounded(GameObject ground)
     {
         if (ground.gameObject.CompareTag("Ground"))
         {
@@ -168,7 +146,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-
+        IsGrounded(collision.gameObject);
 
     }
 
@@ -199,5 +177,23 @@ public class Enemy : MonoBehaviour
     public Vector3 AwayFromEnemy(GameObject receiver)
     {
         return (receiver.transform.position - transform.position).normalized;
+    }
+
+    public virtual void setSpeed()
+    {
+        if (difficulty == 2)
+        {
+            speed = 2.5f;
+        }
+    }
+
+    public void setSpeed(float value) //overload
+    {
+        speed = value;
+    }
+
+    public virtual void setWallForceMultiplier(float multiplier)
+    {
+        wallForceMuliplier = multiplier;
     }
 }

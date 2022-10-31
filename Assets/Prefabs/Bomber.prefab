@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7349716744269368138}
   - component: {fileID: 7349716744269368133}
   - component: {fileID: 7349716744269368137}
-  - component: {fileID: 7349716744269368142}
   - component: {fileID: 3360597998343492499}
+  - component: {fileID: -6101908940373314394}
   m_Layer: 0
   m_Name: Bomber
   m_TagString: Bomber
@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0.47, y: -0.057, z: 8.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7686026989871896995}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -116,23 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7349716744269368142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7349716744269368132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3bacf0848880641a5033ca65f7d75c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7
-  wallForceMuliplier: 0.25
-  enemyFallClip: {fileID: 8300000, guid: 36c64efbed8499346a9bbe5a62a0b9b8, type: 3}
-  enemyHitClip: {fileID: 8300000, guid: 4d0bf64083cc13441bb8953c4bddf04e, type: 3}
-  isGrounded: 1
 --- !u!82 &3360597998343492499
 AudioSource:
   m_ObjectHideFlags: 0
@@ -229,3 +213,93 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6101908940373314394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7349716744269368132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f3b35aed314b44daea2808e81a6a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  wallForceMuliplier: 7
+  enemyFallClip: {fileID: 8300000, guid: 36c64efbed8499346a9bbe5a62a0b9b8, type: 3}
+  isGrounded: 1
+  explosionParticle: {fileID: 6361923258980530394}
+  bomberExplosionClip: {fileID: 8300000, guid: 864784dd185627547b4aedd3335b8460, type: 3}
+  bomberHitClip: {fileID: 8300000, guid: 4d0bf64083cc13441bb8953c4bddf04e, type: 3}
+--- !u!1001 &7181126989080993336
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7349716744269368136}
+    m_Modifications:
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815094449969540331, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: m_Name
+      value: BomberExplosionParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315129643170588386, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+--- !u!198 &6361923258980530394 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4315129643170588386, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+  m_PrefabInstance: {fileID: 7181126989080993336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7686026989871896995 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 649147405341919131, guid: c642074d9511a8e48a9dbcfb2f503890, type: 3}
+  m_PrefabInstance: {fileID: 7181126989080993336}
+  m_PrefabAsset: {fileID: 0}
