@@ -26,10 +26,16 @@ public class Hunter : Enemy
 
     public virtual void OnCollisionEnter(Collision collision)
     {
+        
+
         if (IsPlayer(collision.gameObject))
         {
+            Debug.Log("Collided with player");
             hunterAudioSource.PlayOneShot(hunterHitClip);
         }
+        
+
+
     }
 
 

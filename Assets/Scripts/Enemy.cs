@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
         
 
-        EasyMovement(); //only for testing. remove otherwise
+        //EasyMovement(); //only for testing. remove otherwise
         if (isGrounded == true)
         {
             if (difficulty == 1)
@@ -119,7 +119,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player")){
+        setGrounded(IsGrounded(collision.gameObject));
+
+        if (collision.gameObject.CompareTag("Player")){
             Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromEnemy = (collision.gameObject.transform.position - transform.position);
             playerRB.AddForce(awayFromEnemy * 2f, ForceMode.Impulse);
@@ -128,7 +130,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-        IsGrounded(collision.gameObject);
+        
 
     }
 
@@ -177,5 +179,15 @@ public class Enemy : MonoBehaviour
     public virtual void setWallForceMultiplier(float multiplier)
     {
         wallForceMuliplier = multiplier;
+    }
+
+    protected bool getGrounded()
+    {
+        return isGrounded;
+    }
+
+    protected void setGrounded(bool flag)
+    {
+        isGrounded = flag;
     }
 }

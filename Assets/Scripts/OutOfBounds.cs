@@ -35,8 +35,13 @@ public class OutOfBounds : MonoBehaviour
     {
         if (transform.position.y < -lowerBounds)
         {
+            if (gameObject.CompareTag("Boss"))
+            {
+                Destroy(transform.parent.gameObject);
+            }
 
             Destroy(gameObject);
         }
+
     }
 }

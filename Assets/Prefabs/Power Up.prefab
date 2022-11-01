@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 172682794151350974}
   - component: {fileID: 7203089106140898575}
   - component: {fileID: 5968220968795766965}
+  - component: {fileID: 6404014721497804107}
   m_Layer: 0
   m_Name: Power Up
   m_TagString: PowerUp
@@ -110,3 +111,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55a68de83bb5e7458575908648e2119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6404014721497804107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172682794149127642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dce98c10162b2446b111541298cff90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 50
+  amplitude: 0.5
+  frequency: 1

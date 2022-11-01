@@ -35,6 +35,7 @@ public class MainManager : MonoBehaviour
 
         if (!Instance.mainManagerAudioSource.isPlaying)
         {
+            Instance.mainManagerAudioSource.loop = true;
             Instance.mainManagerAudioSource.Play();
         }
         

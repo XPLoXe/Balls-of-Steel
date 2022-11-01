@@ -1980,9 +1980,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveClip: {fileID: 8300000, guid: b3af400039fbc874ab3c724b0915543b, type: 3}
-  playerControllerScript: {fileID: 0}
   enemyPrefab: {fileID: 5083850059381911364, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
-  bossPrefab: {fileID: 1081255809025588374, guid: bc1aaf1f6609bc64e85e676680b9a71d, type: 3}
+  bossPrefab: {fileID: 8131561449871987996, guid: b74e5516a6c22494c9225634e8af6f97, type: 3}
   enemyStartDelay: 1
   enemySpawnInterval: 3
   enemyCount: 0

@@ -5,8 +5,6 @@ using UnityEngine;
 public class Boss : Enemy
 {
 
-    public GameObject starIndicator;
-
     //AUDIO\\
     private AudioSource bossAudioSource;
     public AudioClip bossHitClip;
@@ -28,6 +26,7 @@ public class Boss : Enemy
         //{
         //    setSpeed(25.0f);
         //}
+        setSpeed(5.0f);
         StartCoroutine(SpawnCooldown());
         setWallForceMultiplier(1.5f);
     }
@@ -55,10 +54,6 @@ public class Boss : Enemy
             StartCoroutine(BurstShots());
             StartCoroutine(Cooldown());
         }
-
-        //powerUp RING\\
-        starIndicator.transform.position = transform.position + new Vector3(0, 3f, 0);
-        //starIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
 
     }
 
