@@ -6,22 +6,42 @@ using System.IO;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
+    private AudioSource mainManagerAudioSource;
 
     public int wave;
-    private int totalGems; 
+    private int totalGems;
+
+    public int difficulty;
     
 
     // Start is called before the first frame update
     void Awake()
     {
-        totalGems = LoadGems();
+        //singleton\\
         if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
+
+
+        totalGems = LoadGems();
+        mainManagerAudioSource = GetComponent<AudioSource>();
+
+        Instance.mainManagerAudioSource = mainManagerAudioSource;
+
+
+
+        if (!Instance.mainManagerAudioSource.isPlaying)
+        {
+            Instance.mainManagerAudioSource.loop = true;
+            Instance.mainManagerAudioSource.Play();
+        }
+        
+        
+        
+
         DontDestroyOnLoad(gameObject);
 
         

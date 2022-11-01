@@ -11,16 +11,14 @@ public class Enemy : MonoBehaviour
     protected GameObject player;
     protected Rigidbody enemyRb;
     
-    protected AudioSource enemyAudioSource;
+    private AudioSource enemyAudioSource;
     public AudioClip enemyFallClip;
-    public AudioClip enemyHitClip;
+    private AudioClip enemyHitClip;
     [SerializeField] private bool isGrounded = true; 
 
     public static int difficulty;
 
-    //boundaries\\
-    private float lowerBounds = 20.0f;
-    private float waterBounds = 7.0f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,24 +29,15 @@ public class Enemy : MonoBehaviour
         setSpeed();
     }
 
-    public virtual void setSpeed()
-    {
-        if (difficulty == 2)
-        {
-            speed = 2.5f;
-        }
-    }
-
-    public virtual void setWallForceMultiplier(float multiplier)
-    {
-        wallForceMuliplier = multiplier;
-    }
+    
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        EasyMovement();
+        
+
+        //EasyMovement(); //only for testing. remove otherwise
         if (isGrounded == true)
         {
             if (difficulty == 1)
@@ -69,27 +58,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-        WaterBounds();
-        LowerBounds();
+        
         
     }
 
-    protected void WaterBounds()
-    {
-        if (transform.position.y == -waterBounds)
-        {
-            enemyAudioSource.PlayOneShot(enemyFallClip);
-        }
-    }
-
-    protected void LowerBounds()
-    {
-        if (transform.position.y < -lowerBounds)
-        {
-
-            Destroy(gameObject);
-        }
-    }
+    
 
     private void HardMovement()
     {
@@ -119,27 +92,21 @@ public class Enemy : MonoBehaviour
         return lookDirection;
     }
 
-    public virtual void OnCollisionEnter(Collision collision)
+   
+
+    protected bool IsPlayer(GameObject collision)
     {
-        
+        return collision.gameObject.CompareTag("Player");
+    }
 
-        if (collision.gameObject.CompareTag("Ground"))
+    protected bool IsGrounded(GameObject ground)
+    {
+        if (ground.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            return true;
         }
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            enemyAudioSource.PlayOneShot(enemyHitClip);
-            //ExplosionPhysics(collision.gameObject);
-        }
-
-        if (this.gameObject.CompareTag("Bomber") && collision.gameObject.CompareTag("Player"))
-        {
-            Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
-            playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 10f, ForceMode.Impulse);
-            Destroy(this.gameObject);
-        }
+        return false;
     }
 
     public virtual void OnCollisionExit(Collision collision)
@@ -152,7 +119,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void OnCollisionStay(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player")){
+        setGrounded(IsGrounded(collision.gameObject));
+
+        if (collision.gameObject.CompareTag("Player")){
             Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromEnemy = (collision.gameObject.transform.position - transform.position);
             playerRB.AddForce(awayFromEnemy * 2f, ForceMode.Impulse);
@@ -161,7 +130,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-
+        
 
     }
 
@@ -192,5 +161,33 @@ public class Enemy : MonoBehaviour
     public Vector3 AwayFromEnemy(GameObject receiver)
     {
         return (receiver.transform.position - transform.position).normalized;
+    }
+
+    public virtual void setSpeed()
+    {
+        if (difficulty == 2)
+        {
+            speed = 2.5f;
+        }
+    }
+
+    public void setSpeed(float value) //overload
+    {
+        speed = value;
+    }
+
+    public virtual void setWallForceMultiplier(float multiplier)
+    {
+        wallForceMuliplier = multiplier;
+    }
+
+    protected bool getGrounded()
+    {
+        return isGrounded;
+    }
+
+    protected void setGrounded(bool flag)
+    {
+        isGrounded = flag;
     }
 }

@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
     public static int waveCount = 0;
     private AudioSource managerAudioSource;
     public AudioClip waveClip;
-    public PlayerController playerControllerScript;
+    private PlayerController playerControllerScript;
 
     //enemy\\
     public GameObject enemyPrefab;

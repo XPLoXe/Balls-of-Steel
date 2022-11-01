@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5083850059381911370}
   - component: {fileID: 5083850059381911365}
   - component: {fileID: 5083850059381911369}
-  - component: {fileID: 5083850059381911374}
   - component: {fileID: 995639470055438227}
+  - component: {fileID: 584505343542958312}
+  - component: {fileID: 5548665996367078338}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -116,23 +117,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5083850059381911374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5083850059381911364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d3bacf0848880641a5033ca65f7d75c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7
-  wallForceMuliplier: 0.25
-  enemyFallClip: {fileID: 8300000, guid: 36c64efbed8499346a9bbe5a62a0b9b8, type: 3}
-  enemyHitClip: {fileID: 8300000, guid: 4d0bf64083cc13441bb8953c4bddf04e, type: 3}
-  isGrounded: 1
 --- !u!82 &995639470055438227
 AudioSource:
   m_ObjectHideFlags: 0
@@ -229,3 +213,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &584505343542958312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083850059381911364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3b213335f035e41a3e72e506c0b876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5548665996367078338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083850059381911364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd754946e9915343ba384f5cba40e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  wallForceMuliplier: 5
+  enemyFallClip: {fileID: 8300000, guid: 36c64efbed8499346a9bbe5a62a0b9b8, type: 3}
+  isGrounded: 1
+  hunterHitClip: {fileID: 8300000, guid: 4d0bf64083cc13441bb8953c4bddf04e, type: 3}
