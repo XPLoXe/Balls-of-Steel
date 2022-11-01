@@ -5,10 +5,14 @@ using UnityEngine;
 public class Boss : Enemy
 {
 
+    public GameObject starIndicator;
+
     //AUDIO\\
     private AudioSource bossAudioSource;
     public AudioClip bossHitClip;
-
+    public GameObject projectilePrefab;
+    private bool isProjectileActive = false;
+    private bool shotsDifference;
 
     // Start is called before the first frame update
     void Start()
@@ -16,29 +20,46 @@ public class Boss : Enemy
         bossAudioSource = GetComponent<AudioSource>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        setSpeed();
+        //if (MainManager.Instance.difficulty == 2)
+        //{
+        //    setSpeed(30.0f);
+        //}
+        //else
+        //{
+        //    setSpeed(25.0f);
+        //}
+        StartCoroutine(SpawnCooldown());
         setWallForceMultiplier(1.5f);
     }
 
-    public override void setSpeed()
-    {
-        if (difficulty == 2)
-        {
-            speed = 25.0f;
-        }
+    //public override void setSpeed()
+    //{
+    //    if (difficulty == 2)
+    //    {
+    //        speed = 25.0f;
+    //    }
 
-        if (difficulty == 1)
-        {
-            speed = 30.0f;
-        }
-    }
+    //    if (difficulty == 1)
+    //    {
+    //        speed = 30.0f;
+    //    }
+    //}
 
     
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (isProjectileActive)
+        {
+            StartCoroutine(BurstShots());
+            StartCoroutine(Cooldown());
+        }
+
+        //powerUp RING\\
+        starIndicator.transform.position = transform.position + new Vector3(0, 3f, 0);
+        //starIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -49,5 +70,36 @@ public class Boss : Enemy
         }
     }
 
+    IEnumerator Cooldown()
+    {
+        isProjectileActive = false;
+        yield return new WaitForSeconds(3);
+        isProjectileActive = true;
+    }
+
+    IEnumerator BurstShots() //CD inbetween shots
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            ShootProjectile();
+        }
+    }
+
+    IEnumerator SpawnCooldown()
+    {
+        yield return new WaitForSeconds(2);
+        isProjectileActive = true;
+    }
+
+    private void ShootProjectile()
+    {
+        Instantiate(projectilePrefab, ProjectileSpawnPosition() + new Vector3(0,3,0), projectilePrefab.transform.rotation);
+    }
+
+    private Vector3 ProjectileSpawnPosition()
+    {
+        return transform.position;
+    }
 
 }

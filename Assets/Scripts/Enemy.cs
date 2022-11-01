@@ -18,9 +18,7 @@ public class Enemy : MonoBehaviour
 
     public static int difficulty;
 
-    //boundaries\\
-    private float lowerBounds = 20.0f;
-    private float waterBounds = 7.0f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +35,7 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
 
-        WaterBounds();
-        LowerBounds();
+        
 
         EasyMovement(); //only for testing. remove otherwise
         if (isGrounded == true)
@@ -65,22 +62,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void WaterBounds()
-    {
-        if (transform.position.y == -waterBounds)
-        {
-            enemyAudioSource.PlayOneShot(enemyFallClip);
-        }
-    }
-
-    private void LowerBounds()
-    {
-        if (transform.position.y < -lowerBounds)
-        {
-
-            Destroy(gameObject);
-        }
-    }
+    
 
     private void HardMovement()
     {

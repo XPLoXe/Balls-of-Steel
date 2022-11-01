@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7349716744269368137}
   - component: {fileID: 3360597998343492499}
   - component: {fileID: -6101908940373314394}
+  - component: {fileID: -1707437196529255582}
   m_Layer: 0
   m_Name: Bomber
   m_TagString: Bomber
@@ -232,6 +233,18 @@ MonoBehaviour:
   explosionParticle: {fileID: 6361923258980530394}
   bomberExplosionClip: {fileID: 8300000, guid: 864784dd185627547b4aedd3335b8460, type: 3}
   bomberHitClip: {fileID: 8300000, guid: 4d0bf64083cc13441bb8953c4bddf04e, type: 3}
+--- !u!114 &-1707437196529255582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7349716744269368132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3b213335f035e41a3e72e506c0b876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7181126989080993336
 PrefabInstance:
   m_ObjectHideFlags: 0
