@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
@@ -6,8 +7,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float speed = 3.0f;
-    [SerializeField] protected float wallForceMuliplier = 5.0f;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float wallForceMuliplier;
     protected GameObject player;
     protected Rigidbody enemyRb;
     
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
 
     public static int difficulty;
 
-    
+    private Action Movement;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,35 @@ public class Enemy : MonoBehaviour
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         setSpeed();
+
+        //Debug.Log(MainManager.Instance.difficulty);
+
+        //switch (MainManager.Instance.difficulty)
+        //{
+        //    case 1:     //Easy
+        //        Movement = EasyMovement;
+                
+        //        break;
+        //    case 2:     //God
+        //        Movement = HardMovement;
+        //        Debug.Log("it got in");
+        //        break;
+        //    default:    //testing
+        //        Movement = EasyMovement;
+        //        break;
+        //}
+
+        if (MainManager.Instance.difficulty == 1)
+        {
+            Movement = EasyMovement;
+        }
+        else
+        {
+            Movement = HardMovement;
+        }
+
+        //Debug.Log(Movement);
+
     }
 
     
@@ -34,24 +64,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log(MainManager.Instance.difficulty);
 
-        
-
-        //EasyMovement(); //only for testing. remove otherwise
         if (isGrounded == true)
         {
-            if (difficulty == 1)
-            {
-                EasyMovement();
-            }
-
-            if (difficulty == 2)
-            {
-                HardMovement();
-            }
+            Movement();
         }
-        
-        
     }
 
 

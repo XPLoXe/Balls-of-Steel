@@ -14,8 +14,22 @@ public class Hunter : Enemy
         hunterAudioSource = GetComponent<AudioSource>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        setSpeed();
-        setWallForceMultiplier(1.5f);
+
+        switch (MainManager.Instance.difficulty)
+        {
+            case 1:
+                setSpeed(10.0f);    //Easy
+                setWallForceMultiplier(7.0f);
+                break;
+            case 2:
+                setSpeed(15.0f);    //God
+                setWallForceMultiplier(14.0f);
+                break;
+            default:
+                setSpeed(10f);      //testing
+                setWallForceMultiplier(7.0f);
+                break;
+        }
     }
 
     // Update is called once per frame

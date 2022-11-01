@@ -21,9 +21,24 @@ public class Bomber : Enemy
         player = GameObject.Find("Player");
         //explosionParticle = GetComponent<ParticleSystem>();
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
-        setSpeed(10f);
-        setWallForceMultiplier(7.0f);
         
+
+        switch (MainManager.Instance.difficulty)
+        {
+            case 1:
+                setSpeed(15.0f);    //Easy
+                setWallForceMultiplier(10.0f);
+                break;
+            case 2:
+                setSpeed(20.0f);    //God
+                setWallForceMultiplier(20.0f);
+                break;
+            default:
+                setSpeed(10f);      //testing
+                setWallForceMultiplier(7.0f);
+                break;
+        }
+
     }
 
     // Update is called once per frame
