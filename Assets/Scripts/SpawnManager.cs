@@ -53,7 +53,7 @@ public class SpawnManager : MonoBehaviour
             
             waveCount++;
             MainManager.Instance.wave = waveCount;
-            Debug.Log(MainManager.Instance.wave);
+            //Debug.Log(MainManager.Instance.wave);
             UpdateWaveCount(waveCount);
             spawnEnemyWave(waveCount);
             SpawnPowerUp();

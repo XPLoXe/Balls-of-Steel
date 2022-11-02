@@ -19,11 +19,11 @@ public class Hunter : Enemy
         {
             case 1:
                 setSpeed(10.0f);    //Easy
-                setWallForceMultiplier(7.0f);
+                setWallForceMultiplier(0.4f);
                 break;
             case 2:
-                setSpeed(15.0f);    //God
-                setWallForceMultiplier(14.0f);
+                setSpeed(3.0f);    //God
+                setWallForceMultiplier(1.0f);
                 break;
             default:
                 setSpeed(10f);      //testing

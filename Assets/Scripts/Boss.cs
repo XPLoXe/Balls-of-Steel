@@ -22,12 +22,12 @@ public class Boss : Enemy
         switch (MainManager.Instance.difficulty)
         {
             case 1:
-                setSpeed(10.0f);    //Easy
+                setSpeed(20.0f);    //Easy
                 setWallForceMultiplier(1.5f);
                 break;
             case 2:
-                setSpeed(15.0f);    //God
-                setWallForceMultiplier(1.0f);
+                setSpeed(5.0f);    //God
+                setWallForceMultiplier(3f);
                 break;
             default:
                 setSpeed(5.0f);     //Testing
