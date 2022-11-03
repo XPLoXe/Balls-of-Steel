@@ -8,6 +8,8 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
     private AudioSource mainManagerAudioSource;
 
+
+
     public int wave;
     private int totalGems;
 
