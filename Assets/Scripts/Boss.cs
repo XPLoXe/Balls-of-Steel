@@ -18,34 +18,27 @@ public class Boss : Enemy
         bossAudioSource = GetComponent<AudioSource>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        //if (MainManager.Instance.difficulty == 2)
-        //{
-        //    setSpeed(30.0f);
-        //}
-        //else
-        //{
-        //    setSpeed(25.0f);
-        //}
-        setSpeed(5.0f);
+        
+        switch (MainManager.Instance.difficulty)
+        {
+            case 1:
+                setSpeed(20.0f);    //Easy
+                setWallForceMultiplier(1.5f);
+                break;
+            case 2:
+                setSpeed(5.0f);    //God
+                setWallForceMultiplier(3f);
+                break;
+            default:
+                setSpeed(5.0f);     //Testing
+                setWallForceMultiplier(1.5f);
+                break;
+        }
+        
         StartCoroutine(SpawnCooldown());
-        setWallForceMultiplier(1.5f);
+        
     }
-
-    //public override void setSpeed()
-    //{
-    //    if (difficulty == 2)
-    //    {
-    //        speed = 25.0f;
-    //    }
-
-    //    if (difficulty == 1)
-    //    {
-    //        speed = 30.0f;
-    //    }
-    //}
-
-    
-
+ 
     // Update is called once per frame
     void Update()
     {

@@ -27,10 +27,12 @@ public class MainManager : MonoBehaviour
 
 
         totalGems = LoadGems();
-        mainManagerAudioSource = GetComponent<AudioSource>();
+        //mainManagerAudioSource = 
 
-        Instance.mainManagerAudioSource = mainManagerAudioSource;
+        Instance.mainManagerAudioSource = GetComponent<AudioSource>();
 
+        //TESTING\\
+        Instance.difficulty = 2;
 
 
         if (!Instance.mainManagerAudioSource.isPlaying)

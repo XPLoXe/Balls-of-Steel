@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
@@ -6,8 +7,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float speed = 3.0f;
-    [SerializeField] protected float wallForceMuliplier = 5.0f;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float wallForceMuliplier;
     protected GameObject player;
     protected Rigidbody enemyRb;
     
@@ -18,40 +19,113 @@ public class Enemy : MonoBehaviour
 
     public static int difficulty;
 
-    
+    private Action Movement;
+    private delegate void MovementDelegate();
+    MovementDelegate movementType;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyAudioSource = GetComponent<AudioSource>();
-        enemyRb = GetComponent<Rigidbody>();
+
         player = GameObject.Find("Player");
-        setSpeed();
+
+        //difficulty = MainManager.Instance.difficulty;
+        //Debug.Log(difficulty);
+
+        //Debug.Log(MainManager.Instance.difficulty);
+
+        //switch (MainManager.Instance.difficulty)
+        //{
+        //    case 1:     //Easy
+        //        Movement = EasyMovement;
+
+        //        break;
+        //    case 2:     //God
+        //        Movement = HardMovement;
+        //        Debug.Log("it got in");
+        //        break;
+        //    default:    //testing
+        //        Movement = EasyMovement;
+        //        break;
+        //}
+
+        //if (difficulty == 1)
+        //{
+        //    //Movement = EasyMovement;
+        //    movementType = EasyMovement;
+        //    Debug.Log("it got in 1");
+        //}
+        //else
+        //{
+        //    //Movement = HardMovement;
+        //    Debug.Log("it got in 2");
+        //    movementType = HardMovement;
+        //}
+
+        //Debug.Log(Movement);
+
     }
 
-    
+    private void Awake()
+    {
+        enemyAudioSource = GetComponent<AudioSource>();
+        enemyRb = GetComponent<Rigidbody>();
+
+
+        //if (MainManager.Instance.difficulty == 1)
+        //{
+        //    //Movement = EasyMovement;
+        //    movementType = EasyMovement;
+        //    Debug.Log("it got in 1");
+        //}
+        //else
+        //{
+        //    //Movement = HardMovement;
+        //    Debug.Log("it got in 2");
+        //    movementType = HardMovement;
+        //}
+    }
+
+
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Debug.Log(MainManager.Instance.difficulty);
+        ////movementType = EasyMovement;
+        //if (isGrounded == true)
+        //{
+        //    movementType();
 
-        
+        //    //if (MainManager.Instance.difficulty == 1)
+        //    //{
+        //    //    EasyMovement();
+        //    //}
+        //    //else
+        //    //{
+        //    //    HardMovement();
+        //    //}
 
-        //EasyMovement(); //only for testing. remove otherwise
-        if (isGrounded == true)
+
+        //    //Movement();
+        //}s
+
+        Debug.Log(MainManager.Instance.difficulty);
+        Debug.Log(isGrounded);
+
+
+        if (isGrounded)
         {
-            if (difficulty == 1)
+            if (MainManager.Instance.difficulty == 1)
             {
                 EasyMovement();
             }
-
-            if (difficulty == 2)
+            else
             {
                 HardMovement();
             }
         }
-        
-        
     }
 
 
@@ -59,10 +133,37 @@ public class Enemy : MonoBehaviour
     {
 
         
+
         
+
     }
 
-    
+    private void LateUpdate()
+    {
+        //if (isGrounded == true)
+        //{
+        //    movementType();
+
+        //    //if (MainManager.Instance.difficulty == 1)
+        //    //{
+        //    //    EasyMovement();
+        //    //}
+        //    //else
+        //    //{
+        //    //    HardMovement();
+        //    //}
+
+
+        //    //Movement();
+        //}
+    }
+
+
+    private void ExecuteMovement (MovementDelegate movementType)
+    {
+        movementType();
+    }
+
 
     private void HardMovement()
     {

@@ -16,14 +16,34 @@ public class Bomber : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        bomberAudioSource = GetComponent<AudioSource>();
-        enemyRb = GetComponent<Rigidbody>();
+        
         player = GameObject.Find("Player");
         //explosionParticle = GetComponent<ParticleSystem>();
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
-        setSpeed(10f);
-        setWallForceMultiplier(7.0f);
         
+
+        switch (MainManager.Instance.difficulty)
+        {
+            case 1:
+                setSpeed(20.0f);    //Easy
+                setWallForceMultiplier(1.5f);
+                break;
+            case 2:
+                setSpeed(3.0f);    //God
+                setWallForceMultiplier(1f);
+                break;
+            default:
+                setSpeed(10f);      //testing
+                setWallForceMultiplier(7.0f);
+                break;
+        }
+
+    }
+
+    private void Awake()
+    {
+        bomberAudioSource = GetComponent<AudioSource>();
+        enemyRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -50,7 +70,7 @@ public class Bomber : Enemy
 
 
             StartCoroutine(WaitForDestroy());
-            playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 10f, ForceMode.Impulse);
+            playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 5f, ForceMode.Impulse);
             //Destroy(this.gameObject);
             //this.gameObject.SetActive(false);
         }
