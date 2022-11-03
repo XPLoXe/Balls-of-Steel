@@ -37,11 +37,11 @@ public class MainManager : MonoBehaviour
         Instance.difficulty = 2;
 
 
-        if (!Instance.mainManagerAudioSource.isPlaying)
-        {
-            Instance.mainManagerAudioSource.loop = true;
-            Instance.mainManagerAudioSource.Play();
-        }
+        //if (!Instance.mainManagerAudioSource.isPlaying)
+        //{
+        //    Instance.mainManagerAudioSource.loop = true;
+        //    Instance.mainManagerAudioSource.Play();
+        //}
         
         
         

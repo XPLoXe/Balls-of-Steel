@@ -51,6 +51,7 @@ public class MusicManager : MonoBehaviour
     public void PlayMusic(AudioClip music)
     {
         musicSource.clip = music;
+        musicSource.loop = true;
         musicSource.Play();
     }
 

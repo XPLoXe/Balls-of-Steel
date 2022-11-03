@@ -1980,6 +1980,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveClip: {fileID: 8300000, guid: b3af400039fbc874ab3c724b0915543b, type: 3}
+  lvl1Music: {fileID: 8300000, guid: 52ade1da92f86e34e87cce254762c032, type: 3}
+  lvl2Music: {fileID: 8300000, guid: f0439c92ecaca514a9412cfc8da0a6a0, type: 3}
+  transition1Music: {fileID: 8300000, guid: 31bdf5d16e4d7fa43a155fc0d33c015b, type: 3}
   enemyPrefab: {fileID: 5083850059381911364, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
   bossPrefab: {fileID: 8131561449871987996, guid: b74e5516a6c22494c9225634e8af6f97, type: 3}
   bomberPrefab: {fileID: 7349716744269368132, guid: 43d9f7fba6ff93c41b6dc797a1313f40, type: 3}
