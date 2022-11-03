@@ -8,8 +8,15 @@ public class SpawnManager : MonoBehaviour
 {
     private float spawnRange = 9.0f;
     public static int waveCount = 0;
+
+    //AUDIO\\
     private AudioSource managerAudioSource;
     public AudioClip waveClip;
+    public AudioClip lvl1Music;
+    public AudioClip lvl2Music;
+    public AudioClip transition1Music;
+
+    //PLAYER\\
     private PlayerController playerControllerScript;
 
     //enemy\\
@@ -39,6 +46,7 @@ public class SpawnManager : MonoBehaviour
         //InvokeRepeating("SpawnEnemy", enemyStartDelay, enemySpawnInterval);
         InvokeRepeating("SpawnPowerUp", powerupStartDelay, powerupSpawnInterval);
         InvokeRepeating("SpawnGem", powerupStartDelay, powerupSpawnInterval);
+        MusicManager.Instance.PlayMusic(lvl2Music);
     }
 
     // Update is called once per frame
