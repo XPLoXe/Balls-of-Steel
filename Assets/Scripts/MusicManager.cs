@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MusicManager : MonoBehaviour
     //Audio
     public AudioSource musicSource;
     public AudioSource effectSource;
+    public AudioClip mainMenuMusic;
     //public AudioClip mainMenuMusic;
     //public AudioClip lvl1Music;
     //public AudioClip lvl2Music;
@@ -20,23 +22,33 @@ public class MusicManager : MonoBehaviour
 
 
 
-    private void Awake()
+    void Awake()
     {
+        //singleton\\
         if (Instance != null)
         {
-            Destroy(Instance);
+            Destroy(gameObject);
             return;
         }
+        //else if (Instance == null)
+        //{
+        //    Instance = this;
+        //}
+
         Instance = this;
+
 
         //musicAudioSource = GetComponent<AudioSource>();
 
-        
+        //if (Instance.musicSource.isPlaying) return;
+
+        //Instance.PlayMusic(mainMenuMusic);
+
+        Instance.PlayMusic(mainMenuMusic);
 
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -59,6 +71,11 @@ public class MusicManager : MonoBehaviour
     {
         effectSource.clip = clip;
         effectSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
     }
 
     public void RandomSoundEffect(params AudioClip[] clips)

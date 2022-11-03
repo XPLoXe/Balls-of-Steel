@@ -34,7 +34,7 @@ public class MainManager : MonoBehaviour
         Instance.mainManagerAudioSource = GetComponent<AudioSource>();
 
         //TESTING\\
-        Instance.difficulty = 2;
+        //Instance.difficulty = 2;
 
 
         //if (!Instance.mainManagerAudioSource.isPlaying)

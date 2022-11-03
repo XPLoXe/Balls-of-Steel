@@ -18,12 +18,25 @@ public class MenuUI : MonoBehaviour
     {
         highScore.text = "Highest Score: " + MainManager.Instance.LoadWave().ToString();
         gemCount.text = MainManager.Instance.getTotalGems().ToString();
-
+        
     }
 
-    private void Start()
+    void Start()
     {
-        MusicManager.Instance.PlayMusic(menuMusicClip);
+        //MusicManager.Instance.musicSource.Stop();
+        
+        if (MusicManager.Instance.musicSource.isPlaying)
+        {
+            Debug.Log("its playing");
+            Debug.Log(MusicManager.Instance.musicSource.isPlaying);
+        }
+        else
+        {
+            MusicManager.Instance.PlayMusic(menuMusicClip);
+        }
+
+        
+
     }
 
     // Update is called once per frame
@@ -51,5 +64,10 @@ public class MenuUI : MonoBehaviour
         MainManager.Instance.difficulty = 2;
 
         StartNew();
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene(2);
     }
 }

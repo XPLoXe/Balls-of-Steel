@@ -70,7 +70,7 @@ public class Bomber : Enemy
 
 
             StartCoroutine(WaitForDestroy());
-            playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 5f, ForceMode.Impulse);
+            playerRB.AddForce(AwayFromEnemy(collision.gameObject) * 8f, ForceMode.Impulse);
             //Destroy(this.gameObject);
             //this.gameObject.SetActive(false);
         }
