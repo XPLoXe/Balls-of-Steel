@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using TMPro;
 using UnityEngine;
 
@@ -7,13 +8,21 @@ public class SpawnManager : MonoBehaviour
 {
     private float spawnRange = 9.0f;
     public static int waveCount = 0;
+
+    //AUDIO\\
     private AudioSource managerAudioSource;
     public AudioClip waveClip;
-    public PlayerController playerControllerScript;
+    public AudioClip lvl1Music;
+    public AudioClip lvl2Music;
+    public AudioClip transition1Music;
+
+    //PLAYER\\
+    private PlayerController playerControllerScript;
 
     //enemy\\
     public GameObject enemyPrefab;
     public GameObject bossPrefab;
+    public GameObject bomberPrefab;
     public float enemyStartDelay = 1.0f;
     public float enemySpawnInterval = 3.0f;
     public int enemyCount;
@@ -37,12 +46,14 @@ public class SpawnManager : MonoBehaviour
         //InvokeRepeating("SpawnEnemy", enemyStartDelay, enemySpawnInterval);
         InvokeRepeating("SpawnPowerUp", powerupStartDelay, powerupSpawnInterval);
         InvokeRepeating("SpawnGem", powerupStartDelay, powerupSpawnInterval);
+        MusicManager.Instance.PlayMusic(lvl2Music);
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyCount = FindObjectsOfType<Enemy>().Length;
+        //This must be removed, it's not performance friendly
+        enemyCount = EnemyCount();
 
         if (enemyCount == 0 && playerControllerScript.gameOver == false)
         {
@@ -50,9 +61,9 @@ public class SpawnManager : MonoBehaviour
             
             waveCount++;
             MainManager.Instance.wave = waveCount;
-            Debug.Log(MainManager.Instance.wave);
+            //Debug.Log(MainManager.Instance.wave);
             UpdateWaveCount(waveCount);
-            spawnEnemyWave(waveCount * 2);
+            spawnEnemyWave(waveCount);
             SpawnPowerUp();
         }
     }
@@ -65,27 +76,66 @@ public class SpawnManager : MonoBehaviour
         return randomPos;
     }
 
-    private void spawnEnemyWave(int enemiesToSpawn)
+    private void spawnEnemyWave(int wave)
     {
-        for(int i = 0; i < enemiesToSpawn; i++)
+        switch (wave % 4)
         {
-            SpawnEnemy();
+            case 0:
+                SpawnBoss(wave/4);
+                break;
+            default:
+                switch (wave % 2)
+                {
+                    case 0:
+                        SpawnBomber(wave / 2);
+                        break;
+                    default:
+                        break;
+                }
+                break;
         }
 
-        if (waveCount%4 == 0)
+        SpawnHunter(wave * 2);  
+
+        //for(int i = 0; i < enemiesToSpawn; i++)
+        //{
+        //    SpawnEnemy();
+        //}
+
+        //if (waveCount%4 == 0)
+        //{
+        //    SpawnBoss();
+        //}
+    }
+
+    private int EnemyCount()
+    {
+        return FindObjectsOfType<Hunter>().Length + FindObjectsOfType<Bomber>().Length + FindObjectsOfType<Boss>().Length;
+    }
+
+    private void SpawnHunter(int total)
+    {
+        for (int i = 0; i < total; i++)
         {
-            SpawnBoss();
+            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
     }
 
-    private void SpawnEnemy()
+    private void SpawnBoss(int total)
     {
-        Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+        for (int i = 0; i < total; i++)
+        {
+            Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
+        }
+        
     }
 
-    private void SpawnBoss()
+    private void SpawnBomber(int total)
     {
-        Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
+        for (int i = 0; i < total; i++)
+        {
+            Instantiate(bomberPrefab, GenerateSpawnPosition(), bomberPrefab.transform.rotation);
+        }
     }
 
     private void SpawnPowerUp()

@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 699041791}
   - component: {fileID: 699041796}
   - component: {fileID: 699041797}
+  - component: {fileID: 699041798}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -914,10 +915,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c22bade4e141324188626c69f86e145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   powerupAudio: {fileID: 8300000, guid: 7efa95b53cf786d4a86e83511a46bdf6, type: 3}
   enemyHitAudio: {fileID: 8300000, guid: e09469da81679ac45b368828e20f89b5, type: 3}
   gameOver: 0
+  normalHit: 3
   restartGameButton: {fileID: 2048910844}
   highScore: {fileID: 1565969219}
   gemCount: {fileID: 626397467}
@@ -1021,6 +1022,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &699041798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699041790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabb571860f737743a09394956e6aa82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &751363735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,7 +1739,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6975cfbff4b3a6a41ac44e15f9ba9a93, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.7
   m_Pitch: 1
@@ -1966,9 +1980,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveClip: {fileID: 8300000, guid: b3af400039fbc874ab3c724b0915543b, type: 3}
-  playerControllerScript: {fileID: 0}
+  lvl1Music: {fileID: 8300000, guid: 52ade1da92f86e34e87cce254762c032, type: 3}
+  lvl2Music: {fileID: 8300000, guid: f0439c92ecaca514a9412cfc8da0a6a0, type: 3}
+  transition1Music: {fileID: 8300000, guid: 31bdf5d16e4d7fa43a155fc0d33c015b, type: 3}
   enemyPrefab: {fileID: 5083850059381911364, guid: bc751a8285e352f4f8ea43ce306e47e8, type: 3}
-  bossPrefab: {fileID: 1081255809025588374, guid: bc1aaf1f6609bc64e85e676680b9a71d, type: 3}
+  bossPrefab: {fileID: 8131561449871987996, guid: b74e5516a6c22494c9225634e8af6f97, type: 3}
+  bomberPrefab: {fileID: 7349716744269368132, guid: 43d9f7fba6ff93c41b6dc797a1313f40, type: 3}
   enemyStartDelay: 1
   enemySpawnInterval: 3
   enemyCount: 0

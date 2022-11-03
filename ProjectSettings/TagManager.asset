@@ -7,9 +7,11 @@ TagManager:
   - PowerUp
   - Enemy
   - Ground
-  - Gem
   - Wall
   - Boss
+  - Gem
+  - Bomber
+  - Projectile
   layers:
   - Default
   - TransparentFX
