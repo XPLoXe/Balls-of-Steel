@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    
+    //player attributes\\
+    public float speed = 5.0f;
+
+
+
     private Rigidbody playerRb;
     private GameObject focalPoint;
     private AudioSource playerAudioSource;
@@ -30,13 +33,27 @@ public class PlayerController : MonoBehaviour
     public float powerupRotationSpeed = 30.0f;
     public GameObject powerupIndicator;
 
+
+    void Awake()
+    {
+        playerAudioSource = GetComponent<AudioSource>();
+        playerRb = GetComponent<Rigidbody>();
+        focalPoint = GameObject.Find("Focal Point");
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         restartGameButton.SetActive(false);
         highScore.gameObject.SetActive(false);
 
-        playerAudioSource = GetComponent<AudioSource>();
+        //attributes load\\
+        playerRb.mass = PlayerDataManager.Instance.Mass;
+        powerupStrength = PlayerDataManager.Instance.PowerupForce;
+        speed = PlayerDataManager.Instance.Speed;
+        normalHit = PlayerDataManager.Instance.Strength;
+
     }
 
     // Update is called once per frame
@@ -45,17 +62,25 @@ public class PlayerController : MonoBehaviour
         //UI\\
         gemCount.text = MainManager.Instance.getTotalGems().ToString();
 
-        //if (!isGrounded)
-        //{
-        //    speed /= 2;
-        //}
-        
+        if (!isGrounded)
+        {
+            speed /= 3;
+        }
+        else
+        {
+            float forwardInput = Input.GetAxis("Vertical"); //for up and down
+            playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
+            float rightInput = Input.GetAxis("Horizontal");
+            playerRb.AddForce(focalPoint.transform.right * rightInput * speed);
+        }
+
 
         //powerUp RING\\
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
         powerupIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
 
         //GAME OVER\\
+        //GOTTA OPTIMIZE\\
         if (transform.position.y < -lowerBound)
         {
             if (SpawnManager.waveCount > MainManager.Instance.LoadWave())
@@ -153,5 +178,23 @@ public class PlayerController : MonoBehaviour
     private bool isEnemy(GameObject collision)
     {
         return (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"));
+    }
+
+
+    //Skill System \\
+    public void IncrementMass()
+    {
+        playerRb.mass += 0.5f;
+    }
+
+    
+    public void IncrementVolume()
+    {
+        
+    }
+
+    public void IncrementSpeed()
+    {
+        
     }
 }
