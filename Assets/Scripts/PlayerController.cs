@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip enemyHitAudio;
     private float lowerBound = 15.0f;
     public bool gameOver = false;
-    private bool isGrounded = true;
+    [SerializeField] private bool isGrounded = true;
 
-    [SerializeField]private float normalHit = 3.0f;
+    [SerializeField] private float normalHit = 3.0f;
     
 
     //UI
@@ -62,17 +62,17 @@ public class PlayerController : MonoBehaviour
         //UI\\
         gemCount.text = MainManager.Instance.getTotalGems().ToString();
 
-        if (!isGrounded)
-        {
-            speed /= 3;
-        }
-        else
-        {
-            float forwardInput = Input.GetAxis("Vertical"); //for up and down
-            playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed);
-            float rightInput = Input.GetAxis("Horizontal");
-            playerRb.AddForce(focalPoint.transform.right * rightInput * speed);
-        }
+        //if (!isGrounded)
+        //{
+        //    speed /= 2;
+        //}
+        //else
+        //{
+        //    float forwardInput = Input.GetAxis("Vertical"); //for up and down
+        //    playerRb.AddForce(focalPoint.transform.forward * forwardInput * speed * Time.deltaTime);
+        //    float rightInput = Input.GetAxis("Horizontal");
+        //    playerRb.AddForce(focalPoint.transform.right * rightInput * speed * Time.deltaTime);
+        //}
 
 
         //powerUp RING\\
