@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 45985174}
   - component: {fileID: 45985173}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 76860207}
   - component: {fileID: 76860206}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300004, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  m_Sprite: {fileID: 21300044, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -704,7 +704,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 295824111}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017468496}
+        m_TargetAssemblyTypeName: GemUI, Assembly-CSharp
+        m_MethodName: addSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &295824111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,7 +838,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 296438662}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017468496}
+        m_TargetAssemblyTypeName: GemUI, Assembly-CSharp
+        m_MethodName: addStrength
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &296438662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,7 +1053,7 @@ GameObject:
   - component: {fileID: 341817640}
   - component: {fileID: 341817639}
   m_Layer: 5
-  m_Name: GemCost (2)
+  m_Name: GemCostStrength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1049,7 +1073,7 @@ RectTransform:
   m_Children:
   - {fileID: 1829164761}
   - {fileID: 306747636}
-  m_Father: {fileID: 2128892095}
+  m_Father: {fileID: 1002792976}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1242,7 +1266,7 @@ GameObject:
   - component: {fileID: 364347136}
   - component: {fileID: 364347135}
   m_Layer: 5
-  m_Name: GemCount
+  m_Name: GemCostSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1453,7 +1477,7 @@ GameObject:
   - component: {fileID: 407085425}
   - component: {fileID: 407085424}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Mass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1588,7 +1612,7 @@ GameObject:
   - component: {fileID: 484949638}
   - component: {fileID: 484949637}
   m_Layer: 5
-  m_Name: GemCount
+  m_Name: GemCostPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1794,7 +1818,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 621903845}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017468496}
+        m_TargetAssemblyTypeName: GemUI, Assembly-CSharp
+        m_MethodName: addMass
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &621903845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,7 +1881,7 @@ GameObject:
   - component: {fileID: 715035688}
   - component: {fileID: 715035687}
   m_Layer: 5
-  m_Name: GemCost (3)
+  m_Name: GemCostMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1865,7 +1901,7 @@ RectTransform:
   m_Children:
   - {fileID: 1559538320}
   - {fileID: 396166560}
-  m_Father: {fileID: 2128892095}
+  m_Father: {fileID: 1002792976}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1994,7 +2030,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 754791217}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2017468496}
+        m_TargetAssemblyTypeName: GemUI, Assembly-CSharp
+        m_MethodName: addPowerUpForce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &754791217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,7 +2246,7 @@ GameObject:
   - component: {fileID: 881187185}
   - component: {fileID: 881187184}
   m_Layer: 5
-  m_Name: GemCost
+  m_Name: GemCostSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2218,7 +2266,7 @@ RectTransform:
   m_Children:
   - {fileID: 364347134}
   - {fileID: 787678357}
-  m_Father: {fileID: 2128892095}
+  m_Father: {fileID: 1002792976}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2441,8 +2489,12 @@ RectTransform:
   - {fileID: 1532868474}
   - {fileID: 976011437}
   - {fileID: 773008225}
+  - {fileID: 881187183}
+  - {fileID: 1200364498}
+  - {fileID: 341817638}
+  - {fileID: 715035686}
   m_Father: {fileID: 2017468495}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2555,7 +2607,7 @@ GameObject:
   - component: {fileID: 1200364500}
   - component: {fileID: 1200364499}
   m_Layer: 5
-  m_Name: GemCost (1)
+  m_Name: GemCostPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2575,7 +2627,7 @@ RectTransform:
   m_Children:
   - {fileID: 484949636}
   - {fileID: 1245591608}
-  m_Father: {fileID: 2128892095}
+  m_Father: {fileID: 1002792976}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2738,7 +2790,7 @@ RectTransform:
   - {fileID: 355142060}
   - {fileID: 188966054}
   m_Father: {fileID: 2017468495}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2871,7 +2923,7 @@ GameObject:
   - component: {fileID: 1410269619}
   - component: {fileID: 1410269618}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Strength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3019,17 +3071,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426543019}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2017468495}
-  m_RootOrder: 1
+  m_Father: {fileID: 1527101103}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000016689, y: -32}
+  m_AnchoredPosition: {x: -0.000013828578, y: -32}
   m_SizeDelta: {x: 166.8812, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1426543021
@@ -3234,13 +3286,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1426543020}
   m_Father: {fileID: 2017468495}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 255}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0.000030518, y: -50}
   m_SizeDelta: {x: 435.0105, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1527101104
@@ -3370,7 +3423,7 @@ GameObject:
   - component: {fileID: 1559538322}
   - component: {fileID: 1559538321}
   m_Layer: 5
-  m_Name: GemCount
+  m_Name: GemCostMass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3582,7 +3635,7 @@ GameObject:
   - component: {fileID: 1829164763}
   - component: {fileID: 1829164762}
   m_Layer: 5
-  m_Name: GemCount
+  m_Name: GemCostStrength
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3774,6 +3827,7 @@ GameObject:
   - component: {fileID: 2017468494}
   - component: {fileID: 2017468493}
   - component: {fileID: 2017468492}
+  - component: {fileID: 2017468496}
   m_Layer: 5
   m_Name: Shop Canvas
   m_TagString: Untagged
@@ -3855,7 +3909,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527101103}
-  - {fileID: 1426543020}
   - {fileID: 1234618897}
   - {fileID: 1002792976}
   - {fileID: 2128892095}
@@ -3867,6 +3920,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2017468496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017468491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d6492023fa801499e7603eda478aaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedText: {fileID: 45985173}
+  powerupText: {fileID: 76860206}
+  strengthText: {fileID: 1410269618}
+  massText: {fileID: 407085424}
+  speedCostText: {fileID: 364347135}
+  powerupCostText: {fileID: 484949637}
+  strengthCostText: {fileID: 1829164762}
+  massCostText: {fileID: 1559538321}
 --- !u!1 &2128892094
 GameObject:
   m_ObjectHideFlags: 0
@@ -3899,12 +3972,8 @@ RectTransform:
   - {fileID: 754791215}
   - {fileID: 296438660}
   - {fileID: 621903843}
-  - {fileID: 881187183}
-  - {fileID: 1200364498}
-  - {fileID: 341817638}
-  - {fileID: 715035686}
   m_Father: {fileID: 2017468495}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

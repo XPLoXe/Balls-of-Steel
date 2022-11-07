@@ -28,6 +28,8 @@ public class PlayerDataManager : MonoBehaviour
         }
         Instance = this;
 
+        LoadPLayer();
+
         DontDestroyOnLoad(gameObject);
 
     }
@@ -79,6 +81,13 @@ public class PlayerDataManager : MonoBehaviour
 
     }
 
+    public void SavePlayer()
+    {
+        PlayerData data = new PlayerData(this.Speed, this.Mass, this.PowerupForce, this.Strength, this.cantSpeed, this.cantPowerupForce, this.cantStrength, this.cantMass);
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/player.json", json);
+    }
+
     public void LoadPLayer()
     {
         string path = Application.persistentDataPath + "/player.json";
@@ -87,7 +96,7 @@ public class PlayerDataManager : MonoBehaviour
         {
             string json = File.ReadAllText(path);
             PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-            //this.Speed = data.speed;
+            this.Speed = data.speed;
             this.PowerupForce = data.powerupForce;
             this.Strength = data.strength;
             this.Mass = data.mass;
@@ -97,6 +106,41 @@ public class PlayerDataManager : MonoBehaviour
             this.cantMass = data.cantMass;
             //return data;
         }
+        else
+        {
+            PlayerData data = new PlayerData(5f, 1f, 15f, 3f, 1, 1, 1, 1); //default values for new players
+            string json = JsonUtility.ToJson(data);
+            File.WriteAllText(Application.persistentDataPath + "/player.json", json);
+        }
     }
+
+    public void addSpeed()
+    {
+        this.Speed *= 1.10f;
+        this.cantSpeed++;
+        SavePlayer();
+    }
+
+    public void addPowerUpForce()
+    {
+        this.PowerupForce *= 1.10f;
+        this.cantPowerupForce++;
+        SavePlayer();
+    }
+
+    public void addStrength()
+    {
+        this.Strength *= 1.10f;
+        this.Strength++;
+        SavePlayer();
+    }
+    public void addMass()
+    {
+        this.Mass *= 1.10f;
+        this.cantMass++;
+        SavePlayer();
+    }
+
+
 
 }

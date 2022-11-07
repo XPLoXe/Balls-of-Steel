@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         playerAudioSource = GetComponent<AudioSource>();
         playerRb = GetComponent<Rigidbody>();
         focalPoint = GameObject.Find("Focal Point");
+
     }
 
     // Start is called before the first frame update
@@ -46,6 +47,13 @@ public class PlayerController : MonoBehaviour
     {
         restartGameButton.SetActive(false);
         highScore.gameObject.SetActive(false);
+
+        //attributes load\\
+        playerRb.mass = PlayerDataManager.Instance.Mass;
+        powerupStrength = PlayerDataManager.Instance.PowerupForce;
+        speed = PlayerDataManager.Instance.Speed;
+        normalHit = PlayerDataManager.Instance.Strength;
+
     }
 
     // Update is called once per frame

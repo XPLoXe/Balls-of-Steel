@@ -160,6 +160,12 @@ public class MainManager : MonoBehaviour
         return totalGems;
     }
 
+    public void updateGems(int amount)
+    {
+        setTotalGems(amount);
+        SaveGems();
+    }
+
     ////PLAYER DATA\\
     //class PlayerData
     //{
