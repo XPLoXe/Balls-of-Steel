@@ -111,6 +111,14 @@ public class PlayerDataManager : MonoBehaviour
             PlayerData data = new PlayerData(5f, 1f, 15f, 3f, 1, 1, 1, 1); //default values for new players
             string json = JsonUtility.ToJson(data);
             File.WriteAllText(Application.persistentDataPath + "/player.json", json);
+            this.Speed = 5f;
+            this.PowerupForce = 15f;
+            this.Strength = 3f;
+            this.Mass = 1;
+            this.cantSpeed = 1;
+            this.cantPowerupForce = 1;
+            this.cantStrength = 1;
+            this.cantMass = 1;
         }
     }
 
@@ -131,7 +139,7 @@ public class PlayerDataManager : MonoBehaviour
     public void addStrength()
     {
         this.Strength *= 1.10f;
-        this.Strength++;
+        this.cantStrength++;
         SavePlayer();
     }
     public void addMass()

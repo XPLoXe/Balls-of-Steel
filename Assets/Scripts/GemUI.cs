@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class GemUI : MonoBehaviour
 {
+    private const int baseCost = 5;
+
     //UI\\
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI powerupText;
@@ -18,6 +20,17 @@ public class GemUI : MonoBehaviour
     public TextMeshProUGUI strengthCostText;
     public TextMeshProUGUI massCostText;
 
+    public TextMeshProUGUI gemCount;
+
+    public GameObject addSpeed;
+    public GameObject addPowerup;
+    public GameObject addStrength;
+    public GameObject addMass;
+
+    public GameObject lockSpeed;
+    public GameObject lockPowerup;
+    public GameObject lockStrength;
+    public GameObject lockMass;
 
     //player data\\
     private float speed;
@@ -53,42 +66,72 @@ public class GemUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedText.text = "Speed: " + speed.ToString();
-        powerupText.text = "Power Up: " + powerupForce.ToString();
-        strengthText.text = "Strength: " + strength.ToString();
-        massText.text = "Mass: " + mass.ToString();
+        speedText.text = "Speed: " + speed.ToString("F2");
+        powerupText.text = "Power Up: " + powerupForce.ToString("F2");
+        strengthText.text = "Strength: " + strength.ToString("F2");
+        massText.text = "Mass: " + mass.ToString("F2");
 
-        speedCostText.text = (5 * cantSpeed).ToString();
-        powerupCostText.text = (5 * cantPowerupForce).ToString();
-        strengthCostText.text = (5 * cantStrength).ToString();
-        massCostText.text = (5 * cantMass).ToString();
+        speedCostText.text = (baseCost * cantSpeed).ToString();
+        powerupCostText.text = (baseCost * cantPowerupForce).ToString();
+        strengthCostText.text = (baseCost * cantStrength).ToString();
+        massCostText.text = (baseCost * cantMass).ToString();
+
+        if (MainManager.Instance.getTotalGems() < (baseCost * cantSpeed))
+        {
+            addSpeed.SetActive(false);
+            lockSpeed.SetActive(true);
+        }
+        
+        if (MainManager.Instance.getTotalGems() < (baseCost * cantPowerupForce))
+        {
+            addPowerup.SetActive(false);
+            lockPowerup.SetActive(true);
+        }
+        
+        if (MainManager.Instance.getTotalGems() < (baseCost * cantStrength))
+        {
+            addStrength.SetActive(false);
+            lockStrength.SetActive(true);
+        }
+        
+        if (MainManager.Instance.getTotalGems() < (baseCost * cantMass))
+        {
+            addMass.SetActive(false);
+            lockMass.SetActive(true);
+        }
+
+        gemCount.text = MainManager.Instance.getTotalGems().ToString();
     }
 
-    public void addSpeed()
+    public void AddSpeed()
     {
-        MainManager.Instance.updateGems(-5 * cantSpeed);
+        MainManager.Instance.updateGems(-baseCost * cantSpeed);
         PlayerDataManager.Instance.addSpeed();
         cantSpeed = PlayerDataManager.Instance.cantSpeed;
+        speed = PlayerDataManager.Instance.Speed;
     }
 
-    public void addPowerUpForce()
+    public void AddPowerUpForce()
     {
-        MainManager.Instance.updateGems(-5 * cantPowerupForce);
+        MainManager.Instance.updateGems(-baseCost * cantPowerupForce);
         PlayerDataManager.Instance.addPowerUpForce();
         cantPowerupForce = PlayerDataManager.Instance.cantPowerupForce;
+        powerupForce = PlayerDataManager.Instance.PowerupForce;
     }
 
-    public void addStrength()
+    public void AddStrength()
     {
-        MainManager.Instance.updateGems(-5 * cantStrength);
+        MainManager.Instance.updateGems(-baseCost * cantStrength);
         PlayerDataManager.Instance.addStrength();
         cantStrength = PlayerDataManager.Instance.cantStrength;
+        strength = PlayerDataManager.Instance.Strength;
     }
-    public void addMass()
+    public void AddMass()
     {
-        MainManager.Instance.updateGems(-5 * cantMass);
+        MainManager.Instance.updateGems(-baseCost * cantMass);
         PlayerDataManager.Instance.addMass();
         cantMass = PlayerDataManager.Instance.cantMass;
+        mass = PlayerDataManager.Instance.Mass;
     }
 
 
