@@ -34,6 +34,11 @@ public class PlayerController : MonoBehaviour
     public float powerupRotationSpeed = 30.0f;
     public GameObject powerupIndicator;
 
+    //pointer\\
+    public GameObject pointer;
+    private Vector3 pointerLocalScale;
+    private float pointerMultiplier = 2f;
+
 
     void Awake()
     {
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         focalPoint = GameObject.Find("Focal Point");
 
+        pointerLocalScale = pointer.transform.localScale;
     }
 
     // Start is called before the first frame update
@@ -80,6 +86,10 @@ public class PlayerController : MonoBehaviour
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
         powerupIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
 
+        pointer.transform.position = new Vector3(transform.position.x, -0.659f, transform.position.z);
+
+        pointer.transform.localScale = (pointerLocalScale * Vector3.Distance(pointer.transform.position, transform.position) * pointerMultiplier);
+
         //GAME OVER\\
         //GOTTA OPTIMIZE\\
         if (CheckBounds())
@@ -97,6 +107,8 @@ public class PlayerController : MonoBehaviour
 
             SaveGems();
 
+            Destroy(gameObject);
+            Destroy(pointer);
             gameOver = true;
         }
     }
