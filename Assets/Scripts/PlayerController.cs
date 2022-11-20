@@ -90,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
         pointer.transform.localScale = (pointerLocalScale * Vector3.Distance(pointer.transform.position, transform.position) * pointerMultiplier);
 
+        
+
         //GAME OVER\\
         //GOTTA OPTIMIZE\\
         if (CheckBounds())
