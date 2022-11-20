@@ -919,6 +919,7 @@ MonoBehaviour:
   powerupAudio: {fileID: 8300000, guid: 7efa95b53cf786d4a86e83511a46bdf6, type: 3}
   enemyHitAudio: {fileID: 8300000, guid: e09469da81679ac45b368828e20f89b5, type: 3}
   gameOver: 0
+  isGrounded: 1
   normalHit: 3
   restartGameButton: {fileID: 2048910844}
   highScore: {fileID: 1565969219}
@@ -1036,6 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  addedSpeed: 4
 --- !u!1 &751363735
 GameObject:
   m_ObjectHideFlags: 0
