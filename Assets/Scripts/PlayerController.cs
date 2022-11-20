@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public GameObject restartGameButton;
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI gemCount;
+    public TextMeshProUGUI gemScore;
 
     // powerUp \\
     public bool hasPowerUp = false;
@@ -81,20 +82,59 @@ public class PlayerController : MonoBehaviour
 
         //GAME OVER\\
         //GOTTA OPTIMIZE\\
-        if (transform.position.y < -lowerBound)
+        if (CheckBounds())
         {
-            if (SpawnManager.waveCount > MainManager.Instance.LoadWave())
+            if (CheckHighScore())
             {
                 MainManager.Instance.SaveWave(SpawnManager.waveCount);
             }
 
-            MainManager.Instance.SaveGems();
+            
 
             restartGameButton.SetActive(true);
             highScore.text = "High Score: " + MainManager.Instance.LoadWave();
             highScore.gameObject.SetActive(true);
+
+            SaveGems();
+
             gameOver = true;
         }
+    }
+
+    private bool CheckBounds()
+    {
+        return transform.position.y < -lowerBound;
+    }
+
+    private bool CheckHighScore()
+    {
+        return SpawnManager.waveCount > MainManager.Instance.LoadWave();
+    }
+
+    private void SaveGems()
+    {
+        if (!gameOver)
+        {
+            if (SpawnManager.waveCount > 1)
+            {
+                int gemsEarned;
+                if (MainManager.Instance.difficulty == 1) //if easy
+                {
+                    gemsEarned = (SpawnManager.waveCount - 1) * 2;
+                }
+                else //if hard
+                {
+                    gemsEarned = (SpawnManager.waveCount - 1) * 3;
+                }
+                
+                gemScore.text = "Gems Earned: " + gemsEarned;
+                MainManager.Instance.setTotalGems(gemsEarned);
+                gemScore.transform.parent.gameObject.SetActive(true);
+            }
+
+            MainManager.Instance.SaveGems();
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
