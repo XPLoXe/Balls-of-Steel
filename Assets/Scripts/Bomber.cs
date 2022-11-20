@@ -13,6 +13,9 @@ public class Bomber : Enemy
     public AudioClip bomberExplosionClip;
     public AudioClip bomberHitClip;
 
+    //light\\
+    //public GameObject emissiveLight;
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -49,7 +52,7 @@ public class Bomber : Enemy
     // Update is called once per frame
     void Update()
     {
-        
+        //emissiveLight.transform.position = transform.position;
     }
 
     private void OnCollisionEnter(Collision collision)

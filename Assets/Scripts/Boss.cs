@@ -12,6 +12,9 @@ public class Boss : Enemy
     private bool isProjectileActive = false;
     private bool shotsDifference;
 
+    //light\\
+    //public GameObject emissiveLight;
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -43,6 +46,8 @@ public class Boss : Enemy
     // Update is called once per frame
     void Update()
     {
+        //emissiveLight.transform.position = transform.position;
+
         if (isProjectileActive)
         {
             StartCoroutine(BurstShots());
