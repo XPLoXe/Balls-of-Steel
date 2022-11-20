@@ -14,9 +14,9 @@ public class Bomber : Enemy
     public AudioClip bomberHitClip;
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        
+        yield return new WaitForSeconds(0.4f);
         player = GameObject.Find("Player");
         //explosionParticle = GetComponent<ParticleSystem>();
         Rigidbody playerRb = player.GetComponent<Rigidbody>();

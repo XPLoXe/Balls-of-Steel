@@ -27,8 +27,10 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //yield return new WaitForSeconds(10);
+        //player = GameObject.Find("Player");
 
-        player = GameObject.Find("Player");
+
 
         //difficulty = MainManager.Instance.difficulty;
         //Debug.Log(difficulty);
@@ -263,6 +265,7 @@ public class Enemy : MonoBehaviour
     {
         return (receiver.transform.position - transform.position).normalized;
     }
+
 
     public virtual void setSpeed()
     {
