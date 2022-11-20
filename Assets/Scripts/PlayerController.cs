@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
     public float powerupStrength = 15.0f;
     public float powerupRotationSpeed = 30.0f;
     public GameObject powerupIndicator;
+    
+    //jump\\
+    public bool hasJump = false;
+    public float JumpIndicatorRotationSpeed = -15.0f;
+    public GameObject jumpIndicator;
 
     //pointer\\
     public GameObject pointer;
@@ -85,6 +90,11 @@ public class PlayerController : MonoBehaviour
         //powerUp RING\\
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
         powerupIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
+
+        jumpIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+        jumpIndicator.transform.Rotate(Vector3.up, JumpIndicatorRotationSpeed * Time.deltaTime, Space.Self);
+
+
 
         pointer.transform.position = new Vector3(transform.position.x, -0.659f, transform.position.z);
 
