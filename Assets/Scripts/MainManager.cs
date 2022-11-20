@@ -35,7 +35,8 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 144;
 
         //singleton\\
         if (Instance != null)
