@@ -101,7 +101,14 @@ public class PlayerController : MonoBehaviour
 
         pointer.transform.position = new Vector3(transform.position.x, -0.659f, transform.position.z);
 
-        pointer.transform.localScale = (pointerLocalScale * Vector3.Distance(pointer.transform.position, transform.position) * pointerMultiplier);
+        if (transform.position.y > 0.1f)
+        {
+            pointer.transform.localScale = (pointerLocalScale * Vector3.Distance(pointer.transform.position, transform.position) * pointerMultiplier);
+        }
+        else
+        {
+            pointer.transform.localScale = (pointerLocalScale * pointerMultiplier);
+        }
 
         if (Input.GetKeyDown(KeyCode.Space) && hasJump)
         {
@@ -192,8 +199,8 @@ public class PlayerController : MonoBehaviour
             playerAudioSource.PlayOneShot(jumpAudio, 2.0f);
             jumpIndicator.SetActive(true);
             Destroy(other.gameObject);
-            //jumpInstructions.gameObject.SetActive(true);
-            //jumpInstructions.CrossFadeAlpha(0, 3f, true);
+            jumpInstructions.gameObject.SetActive(true);
+            jumpInstructions.CrossFadeAlpha(0, 3f, true);
 
         }
     }
