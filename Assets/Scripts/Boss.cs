@@ -27,7 +27,7 @@ public class Boss : Enemy
         {
             case 1:
                 setSpeed(20.0f);    //Easy
-                setWallForceMultiplier(1.5f);
+                setWallForceMultiplier(2f);
                 break;
             case 2:
                 setSpeed(5.0f);    //God

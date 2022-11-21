@@ -34,8 +34,8 @@ public class SpawnManager : MonoBehaviour
 
     //jump\\
     public GameObject jumpPrefab;
-    private float jumpStartDelay = 1.0f;
-    private float jumpSpawnInterval = 5.0f;
+    private float jumpStartDelay = 10.0f;
+    private float jumpSpawnInterval = 30.0f;
 
     //gem\\
     public GameObject gemPrefab;
