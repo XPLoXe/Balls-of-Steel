@@ -12,6 +12,7 @@ TagManager:
   - Gem
   - Bomber
   - Projectile
+  - Jump
   layers:
   - Default
   - TransparentFX

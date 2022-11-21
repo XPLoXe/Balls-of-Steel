@@ -22,6 +22,16 @@ public class Pulsating : MonoBehaviour
     {
 
         // Then start the routine
+        
+    }
+
+    void Start()
+    {
+        
+    }
+
+    void OnEnable()
+    {
         this.routine = StartCoroutine(this.Pulse());
     }
 

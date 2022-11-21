@@ -114,9 +114,6 @@ public class Enemy : MonoBehaviour
         //    //Movement();
         //}s
 
-        Debug.Log(MainManager.Instance.difficulty);
-        Debug.Log(isGrounded);
-
 
         if (isGrounded)
         {

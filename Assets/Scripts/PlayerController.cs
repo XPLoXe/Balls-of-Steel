@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private GameObject focalPoint;
     private AudioSource playerAudioSource;
-    public AudioClip powerupAudio;
+    
     public AudioClip enemyHitAudio;
     private float lowerBound = 15.0f;
     public bool gameOver = false;
@@ -27,17 +27,20 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI gemCount;
     public TextMeshProUGUI gemScore;
+    public TextMeshProUGUI jumpInstructions;
 
     // powerUp \\
     public bool hasPowerUp = false;
     public float powerupStrength = 15.0f;
     public float powerupRotationSpeed = 30.0f;
     public GameObject powerupIndicator;
-    
+    public AudioClip powerupAudio;
+
     //jump\\
     public bool hasJump = false;
-    public float JumpIndicatorRotationSpeed = -15.0f;
+    public float jumpIndicatorRotationSpeed = -15.0f;
     public GameObject jumpIndicator;
+    public AudioClip jumpAudio;
 
     //pointer\\
     public GameObject pointer;
@@ -92,7 +95,7 @@ public class PlayerController : MonoBehaviour
         powerupIndicator.transform.Rotate(Vector3.up, powerupRotationSpeed * Time.deltaTime, Space.Self);
 
         jumpIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
-        jumpIndicator.transform.Rotate(Vector3.up, JumpIndicatorRotationSpeed * Time.deltaTime, Space.Self);
+        jumpIndicator.transform.Rotate(Vector3.up, jumpIndicatorRotationSpeed * Time.deltaTime, Space.Self);
 
 
 
@@ -100,7 +103,12 @@ public class PlayerController : MonoBehaviour
 
         pointer.transform.localScale = (pointerLocalScale * Vector3.Distance(pointer.transform.position, transform.position) * pointerMultiplier);
 
-        
+        if (Input.GetKeyDown(KeyCode.Space) && hasJump)
+        {
+            playerRb.AddForce(Vector3.up * 500);
+            hasJump = false;
+            jumpIndicator.gameObject.SetActive(false);
+        }
 
         //GAME OVER\\
         //GOTTA OPTIMIZE\\
@@ -177,6 +185,17 @@ public class PlayerController : MonoBehaviour
             MainManager.Instance.setTotalGems(1);
             Destroy(other.gameObject);
         }
+
+        if (other.CompareTag("Jump") && !hasJump)
+        {
+            hasJump = true;
+            playerAudioSource.PlayOneShot(jumpAudio, 2.0f);
+            jumpIndicator.SetActive(true);
+            Destroy(other.gameObject);
+            //jumpInstructions.gameObject.SetActive(true);
+            //jumpInstructions.CrossFadeAlpha(0, 3f, true);
+
+        }
     }
 
     IEnumerator PowerupCountdownRoutine()
@@ -195,8 +214,6 @@ public class PlayerController : MonoBehaviour
         {
             playerAudioSource.PlayOneShot(enemyHitAudio);
             
-            
-
             if (collision.gameObject.CompareTag("Boss"))
             {
                 enemyRigidBody.AddForce(awayFromPlayer * powerupStrength * 3, ForceMode.Impulse);
@@ -206,9 +223,6 @@ public class PlayerController : MonoBehaviour
                 enemyRigidBody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
             }
 
-            
-
-            Debug.Log("Collided with: " + collision.gameObject.name + " With Power Up set to " + hasPowerUp);
         } 
         else if (isEnemy(collision.gameObject) && !hasPowerUp)
         {
