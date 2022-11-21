@@ -32,6 +32,11 @@ public class SpawnManager : MonoBehaviour
     public float powerupStartDelay = 5.0f;
     public float powerupSpawnInterval = 20.0f;
 
+    //jump\\
+    public GameObject jumpPrefab;
+    private float jumpStartDelay = 10.0f;
+    private float jumpSpawnInterval = 30.0f;
+
     //gem\\
     public GameObject gemPrefab;
 
@@ -46,6 +51,7 @@ public class SpawnManager : MonoBehaviour
         //InvokeRepeating("SpawnEnemy", enemyStartDelay, enemySpawnInterval);
         InvokeRepeating("SpawnPowerUp", powerupStartDelay, powerupSpawnInterval);
         InvokeRepeating("SpawnGem", powerupStartDelay, powerupSpawnInterval);
+        InvokeRepeating("SpawnJump", jumpStartDelay, jumpSpawnInterval);
         MusicManager.Instance.PlayMusic(lvl2Music);
     }
 
@@ -153,6 +159,14 @@ public class SpawnManager : MonoBehaviour
         if (playerControllerScript.gameOver == false)
         {
             Instantiate(gemPrefab, GenerateSpawnPosition() + new Vector3(0, 0.05f, 0), gemPrefab.transform.rotation);
+        }
+    }
+
+    private void SpawnJump()
+    {
+        if (playerControllerScript.gameOver == false)
+        {
+            Instantiate(jumpPrefab, GenerateSpawnPosition() + new Vector3(0, 1f, 0), jumpPrefab.transform.rotation);
         }
     }
 

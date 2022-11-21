@@ -12,9 +12,13 @@ public class Boss : Enemy
     private bool isProjectileActive = false;
     private bool shotsDifference;
 
+    //light\\
+    //public GameObject emissiveLight;
+
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.4f);
         bossAudioSource = GetComponent<AudioSource>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
@@ -23,7 +27,7 @@ public class Boss : Enemy
         {
             case 1:
                 setSpeed(20.0f);    //Easy
-                setWallForceMultiplier(1.5f);
+                setWallForceMultiplier(2f);
                 break;
             case 2:
                 setSpeed(5.0f);    //God
@@ -42,6 +46,8 @@ public class Boss : Enemy
     // Update is called once per frame
     void Update()
     {
+        //emissiveLight.transform.position = transform.position;
+
         if (isProjectileActive)
         {
             StartCoroutine(BurstShots());

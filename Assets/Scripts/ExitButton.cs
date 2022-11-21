@@ -21,7 +21,12 @@ public class ExitButton : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
-        EditorApplication.ExitPlaymode();
+
+        //if (Application.isEditor)
+        //{
+        //    EditorApplication.ExitPlaymode();
+        //}
+        
     }
 
     public void BackToMenu()

@@ -9,8 +9,9 @@ public class Hunter : Enemy
     public AudioClip hunterHitClip;
 
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.4f);
         hunterAudioSource = GetComponent<AudioSource>();
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");

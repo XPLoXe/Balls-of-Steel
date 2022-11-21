@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -27,8 +28,10 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //yield return new WaitForSeconds(10);
+        //player = GameObject.Find("Player");
 
-        player = GameObject.Find("Player");
+
 
         //difficulty = MainManager.Instance.difficulty;
         //Debug.Log(difficulty);
@@ -111,9 +114,6 @@ public class Enemy : MonoBehaviour
         //    //Movement();
         //}s
 
-        Debug.Log(MainManager.Instance.difficulty);
-        Debug.Log(isGrounded);
-
 
         if (isGrounded)
         {
@@ -169,14 +169,14 @@ public class Enemy : MonoBehaviour
     {
         Vector3 lookDirection = (player.transform.position - transform.position);
         //Enemy following the player
-        enemyRb.AddForce(lookDirection * speed);
+        enemyRb.AddForce(lookDirection * Random.Range((speed * 1.10f), (speed * 0.90f)));
 
     }
 
     private void EasyMovement()
     {
         //Enemy following the player
-        enemyRb.AddForce(LookDirection() * speed);
+        enemyRb.AddForce(LookDirection() * Random.Range((speed * 1.10f), (speed * 0.90f)));
     }
 
     protected void AvoidEdgeImpulse(Vector3 direction)
@@ -263,6 +263,7 @@ public class Enemy : MonoBehaviour
     {
         return (receiver.transform.position - transform.position).normalized;
     }
+
 
     public virtual void setSpeed()
     {
