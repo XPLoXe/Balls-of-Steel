@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 15.0f;
     private Rigidbody playerRb;
     private GameObject focalPoint;
 
-    [SerializeField]private float addedSpeed = 4;
+    //[SerializeField]private float addedSpeed = 4;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         focalPoint = GameObject.Find("Focal Point");
-        addedSpeed = 3.5f;
+        //addedSpeed = 3.5f;
     }
 
 
@@ -28,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        playerRb.AddForce(Vector3.forward * verticalInput * speed * addedSpeed * Time.deltaTime, ForceMode.Impulse);
-        playerRb.AddForce(Vector3.right * horizontalInput * speed * addedSpeed * Time.deltaTime, ForceMode.Impulse);
+        playerRb.AddForce(Vector3.forward * verticalInput * speed * Time.deltaTime, ForceMode.Impulse);
+        playerRb.AddForce(Vector3.right * horizontalInput * speed * Time.deltaTime, ForceMode.Impulse);
     }
 
     // Update is called once per frame
