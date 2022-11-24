@@ -11,6 +11,11 @@ public class PlayerMovement : MonoBehaviour
 
     //[SerializeField]private float addedSpeed = 4;
 
+    void Awake()
+    {
+        speed = PlayerDataManager.Instance.Speed;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

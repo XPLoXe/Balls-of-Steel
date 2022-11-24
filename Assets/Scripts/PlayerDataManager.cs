@@ -108,10 +108,10 @@ public class PlayerDataManager : MonoBehaviour
         }
         else
         {
-            PlayerData data = new PlayerData(5f, 1f, 15f, 3f, 1, 1, 1, 1); //default values for new players
+            PlayerData data = new PlayerData(15.0f, 1f, 15f, 3f, 1, 1, 1, 1); //default values for new players
             string json = JsonUtility.ToJson(data);
             File.WriteAllText(Application.persistentDataPath + "/player.json", json);
-            this.Speed = 5f;
+            this.Speed = 15.0f;
             this.PowerupForce = 15f;
             this.Strength = 3f;
             this.Mass = 1;
