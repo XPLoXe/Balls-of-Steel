@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c0880e4cd8a8704e82b6940624b569a, type: 2}
+  - {fileID: 2100000, guid: 9883d6ec0a8a13e4a94162a6b88a09e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,8 +125,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8328991, y: 1.0383196, z: 0.20007595}
-  m_Center: {x: 0.0000009685755, y: 0, z: 0.000000014901158}
+  m_Size: {x: 1.0388651, y: 1.2706561, z: 0.49565434}
+  m_Center: {x: -0.008767764, y: 0.0031970541, z: -0.008990367}
 --- !u!1 &711225181759482212
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9963192, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.01697588, a: 1}
   m_Intensity: 2
   m_Range: 5
   m_SpotAngle: 30
