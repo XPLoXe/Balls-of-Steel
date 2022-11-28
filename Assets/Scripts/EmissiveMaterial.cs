@@ -12,6 +12,8 @@ public class EmissiveMaterial : MonoBehaviour
     {
         emColor = GetComponent<Renderer>().material.GetColor("_EmissionColor");
         rend = GetComponent<Renderer>();
+        Debug.Log(emColor);
+        Debug.Log(rend);
     }
 
     void Update()
