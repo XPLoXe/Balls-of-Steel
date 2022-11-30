@@ -10,6 +10,9 @@ public class MenuUI : MonoBehaviour
     public TextMeshProUGUI highScore;
     public TextMeshProUGUI gemCount;
 
+    public GameObject instructionsCollapsed;
+    public GameObject instructionsExpanded;
+
     //AUDIO\\
     public AudioClip menuMusicClip;
     public AudioClip hardDifficultyClip;
@@ -18,13 +21,13 @@ public class MenuUI : MonoBehaviour
     {
         highScore.text = "Highest Score: " + MainManager.Instance.LoadWave().ToString();
         gemCount.text = MainManager.Instance.getTotalGems().ToString();
-        
+
     }
 
     void Start()
     {
         //MusicManager.Instance.musicSource.Stop();
-        
+
         if (MusicManager.Instance.musicSource.isPlaying)
         {
             Debug.Log("its playing");
@@ -35,14 +38,14 @@ public class MenuUI : MonoBehaviour
             MusicManager.Instance.PlayMusic(menuMusicClip);
         }
 
-        
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartNew()
@@ -75,4 +78,17 @@ public class MenuUI : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
+
+    public void InstructionsExpand()
+    {
+        instructionsCollapsed.gameObject.SetActive(false);
+        instructionsExpanded.gameObject.SetActive(true);
+    }
+
+    public void InstructionsCollapse()
+    {
+        instructionsCollapsed.gameObject.SetActive(true);
+        instructionsExpanded.gameObject.SetActive(false);
+    }
+
 }
