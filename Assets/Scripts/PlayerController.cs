@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI gemCount;
     public TextMeshProUGUI gemScore;
     public TextMeshProUGUI jumpInstructions;
+    public TextMeshProUGUI powerUpTimerText;
+    public float powerUpTimer;
 
     // powerUp \\
     public bool hasPowerUp = false;
@@ -76,6 +78,8 @@ public class PlayerController : MonoBehaviour
     {
         //UI\\
         gemCount.text = MainManager.Instance.getTotalGems().ToString();
+        powerUpTimer += Time.deltaTime;
+        powerUpTimerText.text = powerUpTimer.ToString("F2");
 
         //if (!isGrounded)
         //{
@@ -184,6 +188,7 @@ public class PlayerController : MonoBehaviour
             playerAudioSource.PlayOneShot(powerupAudio, 2.0f);
             powerupIndicator.SetActive(true);
             Destroy(other.gameObject);
+
             StartCoroutine(PowerupCountdownRoutine());
         }
 
@@ -207,9 +212,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PowerupCountdownRoutine()
     {
+        powerUpTimer = 0;
+        powerUpTimerText.gameObject.transform.parent.gameObject.SetActive(true);
         yield return new WaitForSeconds(5f);
         powerupIndicator.SetActive(false);
         hasPowerUp = false;
+        powerUpTimerText.gameObject.transform.parent.gameObject.SetActive(false);
+
     }
 
     private void OnCollisionEnter(Collision collision)

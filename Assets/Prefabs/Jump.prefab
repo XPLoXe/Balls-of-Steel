@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6056239544539671643}
   - component: {fileID: 1898504434420246688}
   - component: {fileID: 809658361028693808}
+  - component: {fileID: 1473460360}
   m_Layer: 0
   m_Name: Jump
   m_TagString: Jump
@@ -65,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9c0880e4cd8a8704e82b6940624b569a, type: 2}
+  - {fileID: 2100000, guid: 9883d6ec0a8a13e4a94162a6b88a09e0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,8 +126,20 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8328991, y: 1.0383196, z: 0.20007595}
-  m_Center: {x: 0.0000009685755, y: 0, z: 0.000000014901158}
+  m_Size: {x: 1.0388651, y: 1.2706561, z: 0.49565434}
+  m_Center: {x: -0.008767764, y: 0.0031970541, z: -0.008990367}
+--- !u!114 &1473460360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38346886715799811}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36e84fc557d01d45a8794ea4a15068d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &711225181759482212
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711225181759482212}
   m_LocalRotation: {x: -0, y: -0.020791339, z: -0, w: 0.9997839}
-  m_LocalPosition: {x: 0, y: -0.198, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -170,8 +183,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9963192, g: 1, b: 0, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 1, g: 0, b: 0.01697588, a: 1}
+  m_Intensity: 4
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
