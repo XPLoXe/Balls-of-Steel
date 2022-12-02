@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototype 4.unity
     guid: a4b96ad7a65484fd4a83cb97540eee50
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 2e834a71a27e2084b8803db9f72499d0
+  - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: cfb6788d83f60164da2ed4bccb3133f2
   m_configObjects: {}

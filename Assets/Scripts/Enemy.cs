@@ -1,32 +1,269 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected float speed = 3.0f;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float wallForceMuliplier;
     protected GameObject player;
     protected Rigidbody enemyRb;
     
-    protected AudioSource enemyAudioSource;
+    private AudioSource enemyAudioSource;
     public AudioClip enemyFallClip;
-    public AudioClip enemyHitClip;
+    private AudioClip enemyHitClip;
     [SerializeField] private bool isGrounded = true; 
 
     public static int difficulty;
 
-    //boundaries\\
-    private float lowerBounds = 20.0f;
-    private float waterBounds = 7.0f;
+    private Action Movement;
+    private delegate void MovementDelegate();
+    MovementDelegate movementType;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        //yield return new WaitForSeconds(10);
+        //player = GameObject.Find("Player");
+
+
+
+        //difficulty = MainManager.Instance.difficulty;
+        //Debug.Log(difficulty);
+
+        //Debug.Log(MainManager.Instance.difficulty);
+
+        //switch (MainManager.Instance.difficulty)
+        //{
+        //    case 1:     //Easy
+        //        Movement = EasyMovement;
+
+        //        break;
+        //    case 2:     //God
+        //        Movement = HardMovement;
+        //        Debug.Log("it got in");
+        //        break;
+        //    default:    //testing
+        //        Movement = EasyMovement;
+        //        break;
+        //}
+
+        //if (difficulty == 1)
+        //{
+        //    //Movement = EasyMovement;
+        //    movementType = EasyMovement;
+        //    Debug.Log("it got in 1");
+        //}
+        //else
+        //{
+        //    //Movement = HardMovement;
+        //    Debug.Log("it got in 2");
+        //    movementType = HardMovement;
+        //}
+
+        //Debug.Log(Movement);
+
+    }
+
+    private void Awake()
+    {
         enemyAudioSource = GetComponent<AudioSource>();
         enemyRb = GetComponent<Rigidbody>();
-        player = GameObject.Find("Player");
-        setSpeed();
+
+
+        //if (MainManager.Instance.difficulty == 1)
+        //{
+        //    //Movement = EasyMovement;
+        //    movementType = EasyMovement;
+        //    Debug.Log("it got in 1");
+        //}
+        //else
+        //{
+        //    //Movement = HardMovement;
+        //    Debug.Log("it got in 2");
+        //    movementType = HardMovement;
+        //}
     }
+
+
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        //Debug.Log(MainManager.Instance.difficulty);
+        ////movementType = EasyMovement;
+        //if (isGrounded == true)
+        //{
+        //    movementType();
+
+        //    //if (MainManager.Instance.difficulty == 1)
+        //    //{
+        //    //    EasyMovement();
+        //    //}
+        //    //else
+        //    //{
+        //    //    HardMovement();
+        //    //}
+
+
+        //    //Movement();
+        //}s
+
+
+        if (isGrounded)
+        {
+            if (MainManager.Instance.difficulty == 1)
+            {
+                EasyMovement();
+            }
+            else
+            {
+                HardMovement();
+            }
+        }
+    }
+
+
+    void Update()
+    {
+
+        
+
+        
+
+    }
+
+    private void LateUpdate()
+    {
+        //if (isGrounded == true)
+        //{
+        //    movementType();
+
+        //    //if (MainManager.Instance.difficulty == 1)
+        //    //{
+        //    //    EasyMovement();
+        //    //}
+        //    //else
+        //    //{
+        //    //    HardMovement();
+        //    //}
+
+
+        //    //Movement();
+        //}
+    }
+
+
+    private void ExecuteMovement (MovementDelegate movementType)
+    {
+        movementType();
+    }
+
+
+    private void HardMovement()
+    {
+        Vector3 lookDirection = (player.transform.position - transform.position);
+        //Enemy following the player
+        enemyRb.AddForce(lookDirection * Random.Range((speed * 1.10f), (speed * 0.90f)));
+
+    }
+
+    private void EasyMovement()
+    {
+        //Enemy following the player
+        enemyRb.AddForce(LookDirection() * Random.Range((speed * 1.10f), (speed * 0.90f)));
+    }
+
+    protected void AvoidEdgeImpulse(Vector3 direction)
+    {
+        
+        //Enemy following the player
+        //enemyRb.AddForce(lookDirection * speed, ForceMode.Impulse);
+        enemyRb.AddForce(direction * wallForceMuliplier, ForceMode.Impulse);
+    }
+
+    protected Vector3 LookDirection()
+    {
+        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        return lookDirection;
+    }
+
+   
+
+    protected bool IsPlayer(GameObject collision)
+    {
+        return collision.gameObject.CompareTag("Player");
+    }
+
+    protected bool IsGrounded(GameObject ground)
+    {
+        if (ground.gameObject.CompareTag("Ground"))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public virtual void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
+
+    public virtual void OnCollisionStay(Collision collision)
+    {
+        setGrounded(IsGrounded(collision.gameObject));
+
+        if (collision.gameObject.CompareTag("Player")){
+            Rigidbody playerRB = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromEnemy = (collision.gameObject.transform.position - transform.position);
+            playerRB.AddForce(awayFromEnemy * 2f, ForceMode.Impulse);
+            //playerRB.AddExplosionForce(30f, awayFromEnemy, 5f, 10f);
+            //enemyRb.AddExplosionForce(30f, -LookDirection(), 5f, 10f);
+            
+        }
+
+        
+
+    }
+
+    public virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            AvoidEdgeImpulse(other.transform.up);
+        }
+
+    }
+
+    protected virtual void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            AvoidEdgeImpulse(other.transform.up);
+        }
+    }
+
+    public void ExplosionPhysics(GameObject receiver)
+    {
+        Rigidbody playerRB = receiver.GetComponent<Rigidbody>();
+        //playerRB.AddExplosionForce(400f, AwayFromEnemy(receiver), 50.0f);
+        //playerRB.AddExplosionForce(400f, Vector3.up, 10.0f);
+    }
+
+    public Vector3 AwayFromEnemy(GameObject receiver)
+    {
+        return (receiver.transform.position - transform.position).normalized;
+    }
+
 
     public virtual void setSpeed()
     {
@@ -36,85 +273,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void setSpeed(float value) //overload
     {
-        if (isGrounded == true)
-        {
-            if (difficulty == 1)
-            {
-                EasyMovement();
-            }
-
-            if (difficulty == 2)
-            {
-                HardMovement();
-            }
-        }
-        
-        
+        speed = value;
     }
 
-
-    void Update()
+    public virtual void setWallForceMultiplier(float multiplier)
     {
-
-        WaterBounds();
-        LowerBounds();
-        
+        wallForceMuliplier = multiplier;
     }
 
-    protected void WaterBounds()
+    protected bool getGrounded()
     {
-        if (transform.position.y == -waterBounds)
-        {
-            enemyAudioSource.PlayOneShot(enemyFallClip);
-        }
+        return isGrounded;
     }
 
-    protected void LowerBounds()
+    protected void setGrounded(bool flag)
     {
-        if (transform.position.y < -lowerBounds)
-        {
-
-            Destroy(gameObject);
-        }
+        isGrounded = flag;
     }
-
-    private void HardMovement()
-    {
-        Vector3 lookDirection = (player.transform.position - transform.position);
-        //Enemy following the player
-        enemyRb.AddForce(lookDirection * speed);
-
-    }
-
-    private void EasyMovement()
-    {
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
-        //Enemy following the player
-        enemyRb.AddForce(lookDirection * speed);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            enemyAudioSource.PlayOneShot(enemyHitClip);
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-
 }

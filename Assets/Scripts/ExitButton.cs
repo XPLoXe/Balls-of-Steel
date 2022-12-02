@@ -26,6 +26,7 @@ public class ExitButton : MonoBehaviour
 
     public void BackToMenu()
     {
+        MusicManager.Instance.musicSource.Pause();
         SpawnManager.waveCount = 0;
         SceneManager.LoadScene(0);
     }
